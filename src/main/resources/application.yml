@@ -1,0 +1,63 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api/v1
+
+spring:
+  application:
+    name: bugsight-backend
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${DB_HOST:localhost}:3306/${DB_NAME:bugsight}?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+    username: ${DB_USER:root}
+    password: ${DB_PASS:root}
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+# MyBatis-Plus
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*.xml
+  type-aliases-package: com.bugsight.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-delete-field: isDeleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+# Sa-Token
+sa-token:
+  token-name: Authorization
+  token-prefix: Bearer
+  timeout: 604800        # 7天，单位秒
+  is-concurrent: true
+  is-share: false
+  token-style: jwt-simple
+  jwt-secret-key: ${JWT_SECRET:BugSight_Secret_2024_@#$%}
+  is-log: false
+
+# 文件存储
+file:
+  upload-path: ${FILE_UPLOAD_PATH:/var/bugsight/uploads}
+  access-url: ${FILE_ACCESS_URL:http://localhost:8080/api/v1/files}
+
+# FastAPI 推理服务地址（内网）
+inference:
+  url: ${INFERENCE_URL:http://127.0.0.1:8000}
+
+# Knife4j API 文档
+knife4j:
+  enable: true
+  setting:
+    language: zh_cn
+
+logging:
+  level:
+    com.bugsight: debug

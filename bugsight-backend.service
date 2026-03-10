@@ -1,0 +1,28 @@
+[Unit]
+Description=BugSight Backend Service
+After=network.target mysql.service
+
+[Service]
+Type=simple
+User=bugsight
+WorkingDirectory=/opt/bugsight
+EnvironmentFile=/opt/bugsight/.env
+ExecStart=/usr/bin/java \
+  -Xms256m -Xmx512m \
+  -Dspring.profiles.active=prod \
+  -DDB_HOST=${DB_HOST} \
+  -DDB_NAME=${DB_NAME} \
+  -DDB_USER=${DB_USER} \
+  -DDB_PASS=${DB_PASS} \
+  -DJWT_SECRET=${JWT_SECRET} \
+  -DFILE_UPLOAD_PATH=${FILE_UPLOAD_PATH} \
+  -DFILE_ACCESS_URL=${FILE_ACCESS_URL} \
+  -DINFERENCE_URL=${INFERENCE_URL} \
+  -jar /opt/bugsight/bugsight-backend.jar
+Restart=on-failure
+RestartSec=10
+StandardOutput=append:/var/log/bugsight/app.log
+StandardError=append:/var/log/bugsight/app.log
+
+[Install]
+WantedBy=multi-user.target

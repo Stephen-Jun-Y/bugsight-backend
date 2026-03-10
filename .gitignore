@@ -1,0 +1,10 @@
+target/
+*.class
+*.jar
+!bugsight-backend.service
+.env
+.env.*
+*.log
+.idea/
+*.iml
+.DS_Store
