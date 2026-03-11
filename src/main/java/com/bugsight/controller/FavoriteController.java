@@ -1,14 +1,16 @@
 package com.bugsight.controller;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.bugsight.common.result.Result;
 import com.bugsight.common.utils.LoginUserUtil;
+import com.bugsight.dto.response.PageResponse;
 import com.bugsight.entity.InsectInfo;
 import com.bugsight.service.FavoriteService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @Tag(name = "收藏模块")
 @RestController
@@ -20,10 +22,12 @@ public class FavoriteController {
 
     @Operation(summary = "收藏列表")
     @GetMapping
-    public Result<Page<InsectInfo>> list(
+    public Result<PageResponse<InsectInfo>> list(
             @RequestParam(defaultValue = "1") int page,
-            @RequestParam(defaultValue = "20") int size) {
-        return Result.ok(favoriteService.listFavorites(LoginUserUtil.getCurrentUserId(), page, size));
+            @RequestParam(value = "pageSize", defaultValue = "20") int pageSize,
+            @RequestParam(value = "size", required = false) Integer size) {
+        int realSize = size != null ? size : pageSize;
+        return Result.ok(PageResponse.from(favoriteService.listFavorites(LoginUserUtil.getCurrentUserId(), page, realSize)));
     }
 
     @Operation(summary = "添加收藏")
@@ -38,5 +42,19 @@ public class FavoriteController {
     public Result<Void> remove(@PathVariable Integer insectId) {
         favoriteService.removeFavorite(LoginUserUtil.getCurrentUserId(), insectId);
         return Result.ok();
+    }
+
+    @Operation(summary = "切换收藏")
+    @PostMapping("/{insectId}/toggle")
+    public Result<Map<String, Boolean>> toggle(@PathVariable Integer insectId) {
+        boolean isFavorited = favoriteService.toggleFavorite(LoginUserUtil.getCurrentUserId(), insectId);
+        return Result.ok(Map.of("isFavorited", isFavorited));
+    }
+
+    @Operation(summary = "是否已收藏")
+    @GetMapping("/{insectId}/status")
+    public Result<Map<String, Boolean>> status(@PathVariable Integer insectId) {
+        boolean isFavorited = favoriteService.isFavorited(LoginUserUtil.getCurrentUserId(), insectId);
+        return Result.ok(Map.of("isFavorited", isFavorited));
     }
 }
