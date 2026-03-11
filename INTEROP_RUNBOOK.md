@@ -63,6 +63,35 @@ sudo bash scripts/bootstrap_backend_service.sh
 ```
 
 ---
+
+## 0.2 数据库报错专项修复（Access denied）
+
+若日志出现：
+
+- `java.sql.SQLException: Access denied for user 'bugsight_user'@'localhost'`
+
+请按顺序执行：
+
+```bash
+# 1) 查看应用数据库配置
+sudo cat /opt/bugsight/.env | rg '^DB_'
+
+# 2) 运行自动修复脚本（创建/重置用户权限 + 导入 schema + 重启服务）
+cd /opt/bugsight/source
+sudo bash scripts/fix_mysql_access.sh
+
+# 3) 验证服务
+curl -i http://127.0.0.1:8080/api/v1/health
+```
+
+若仍失败，再看日志：
+
+```bash
+sudo journalctl -u bugsight-backend -n 200 --no-pager
+sudo tail -n 200 /var/log/bugsight/app.log
+```
+
+---
 ## 1. API 可访问性诊断（最小闭环）
 
 ```bash
