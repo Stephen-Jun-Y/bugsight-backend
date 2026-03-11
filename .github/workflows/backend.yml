@@ -4,17 +4,20 @@ on:
   push:
     branches: [ main ]
     paths:
-      - 'bugsight-backend/**'
+      - 'src/**'
+      - 'pom.xml'
+      - 'bugsight-backend.service'
       - '.github/workflows/backend.yml'
   pull_request:
     branches: [ main ]
     paths:
-      - 'bugsight-backend/**'
+      - 'src/**'
+      - 'pom.xml'
+      - '.github/workflows/backend.yml'
 
 jobs:
-  # ── 构建 & 测试 ──────────────────────────────────────────
   build:
-    name: Build & Test
+    name: Build
     runs-on: ubuntu-latest
 
     steps:
@@ -29,19 +32,17 @@ jobs:
           cache: maven
 
       - name: Build with Maven
-        working-directory: bugsight-backend
         run: mvn clean package -DskipTests -q
 
       - name: Upload JAR artifact
         uses: actions/upload-artifact@v4
         with:
           name: bugsight-backend-jar
-          path: bugsight-backend/target/bugsight-backend.jar
+          path: target/bugsight-backend.jar
           retention-days: 1
 
-  # ── 部署到服务器 ─────────────────────────────────────────
   deploy:
-    name: Deploy to Server
+    name: Deploy to Tencent Cloud
     runs-on: ubuntu-latest
     needs: build
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
@@ -52,7 +53,7 @@ jobs:
         with:
           name: bugsight-backend-jar
 
-      - name: Deploy via SSH
+      - name: Upload JAR to server
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.SERVER_HOST }}
@@ -61,15 +62,20 @@ jobs:
           source: "bugsight-backend.jar"
           target: "/opt/bugsight/"
 
-      - name: Restart service
+      - name: Restart backend service
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
-            echo "==> Restarting BugSight Backend..."
+            set -e
+            if [ ! -f /etc/systemd/system/bugsight-backend.service ]; then
+              echo "Service not found, creating from current repo template..."
+              cp /opt/bugsight/source/bugsight-backend.service /etc/systemd/system/bugsight-backend.service
+              systemctl daemon-reload
+              systemctl enable bugsight-backend
+            fi
             systemctl restart bugsight-backend
             sleep 5
             systemctl status bugsight-backend --no-pager
-            echo "==> Deploy success!"

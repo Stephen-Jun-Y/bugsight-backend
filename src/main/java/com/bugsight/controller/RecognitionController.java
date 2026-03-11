@@ -1,9 +1,10 @@
 package com.bugsight.controller;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.bugsight.common.result.Result;
 import com.bugsight.common.utils.LoginUserUtil;
 import com.bugsight.dto.request.EditHistoryRequest;
+import com.bugsight.dto.response.PageResponse;
+import com.bugsight.dto.response.RecognitionResponse;
 import com.bugsight.entity.RecognitionHistory;
 import com.bugsight.service.RecognitionService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -24,49 +25,57 @@ public class RecognitionController {
     private final RecognitionService recognitionService;
 
     @Operation(summary = "上传图片识别")
-    @PostMapping("/recognize")
-    public Result<RecognitionHistory> recognize(
-            @RequestParam("file") MultipartFile file,
+    @PostMapping({"/recognitions", "/recognize"})
+    public Result<RecognitionResponse> recognize(
+            @RequestParam(value = "image", required = false) MultipartFile image,
+            @RequestParam(value = "file", required = false) MultipartFile file,
             @RequestParam(value = "source", defaultValue = "1") Integer source,
+            @RequestParam(value = "location", required = false) String location,
             @RequestParam(value = "locationName", required = false) String locationName,
             @RequestParam(value = "latitude", required = false) BigDecimal lat,
             @RequestParam(value = "longitude", required = false) BigDecimal lng) {
-        Long userId = LoginUserUtil.getCurrentUserId();
-        RecognitionHistory result = recognitionService.recognize(userId, file, source, locationName, lat, lng);
-        return Result.ok(result);
+        MultipartFile upload = image != null ? image : file;
+        RecognitionHistory result = recognitionService.recognize(LoginUserUtil.getCurrentUserId(), upload, source,
+                location != null ? location : locationName, lat, lng);
+        return Result.ok(recognitionService.toRecognitionResponse(result));
     }
 
-    @Operation(summary = "历史记录列表（分页）")
-    @GetMapping("/history")
-    public Result<Page<RecognitionHistory>> history(
+    @Operation(summary = "识别记录列表")
+    @GetMapping({"/recognitions", "/history", "/recognitions/history"})
+    public Result<PageResponse<RecognitionResponse>> history(
             @RequestParam(defaultValue = "1") int page,
-            @RequestParam(defaultValue = "20") int size,
-            @RequestParam(required = false) String q) {
-        return Result.ok(recognitionService.pageHistory(LoginUserUtil.getCurrentUserId(), page, size, q));
+            @RequestParam(value = "pageSize", defaultValue = "20") int pageSize,
+            @RequestParam(value = "size", required = false) Integer size,
+            @RequestParam(value = "keyword", required = false) String keyword,
+            @RequestParam(value = "q", required = false) String q) {
+        int realSize = size != null ? size : pageSize;
+        String realKeyword = keyword != null ? keyword : q;
+        return Result.ok(PageResponse.from(recognitionService.pageRecognitionResults(
+                LoginUserUtil.getCurrentUserId(), page, realSize, realKeyword)));
     }
 
-    @Operation(summary = "历史记录详情")
-    @GetMapping("/history/{id}")
-    public Result<RecognitionHistory> historyDetail(@PathVariable Long id) {
-        return Result.ok(recognitionService.getDetail(LoginUserUtil.getCurrentUserId(), id));
+    @Operation(summary = "识别记录详情")
+    @GetMapping({"/recognitions/{id}", "/history/{id}", "/recognitions/history/{id}"})
+    public Result<RecognitionResponse> historyDetail(@PathVariable Long id) {
+        return Result.ok(recognitionService.getRecognitionResult(LoginUserUtil.getCurrentUserId(), id));
     }
 
-    @Operation(summary = "编辑历史记录")
-    @PutMapping("/history/{id}")
+    @Operation(summary = "编辑识别记录")
+    @PatchMapping({"/recognitions/{id}", "/history/{id}", "/recognitions/history/{id}"})
     public Result<Void> editHistory(@PathVariable Long id, @RequestBody EditHistoryRequest req) {
         recognitionService.editHistory(LoginUserUtil.getCurrentUserId(), id, req);
         return Result.ok();
     }
 
-    @Operation(summary = "删除单条历史")
-    @DeleteMapping("/history/{id}")
+    @Operation(summary = "删除识别记录")
+    @DeleteMapping({"/recognitions/{id}", "/history/{id}", "/recognitions/history/{id}"})
     public Result<Void> deleteHistory(@PathVariable Long id) {
         recognitionService.deleteHistory(LoginUserUtil.getCurrentUserId(), id);
         return Result.ok();
     }
 
     @Operation(summary = "批量删除历史")
-    @DeleteMapping("/history/batch")
+    @DeleteMapping({"/history/batch", "/recognitions/history/batch"})
     public Result<Map<String, Integer>> batchDelete(@RequestBody Map<String, List<Long>> body) {
         int count = recognitionService.batchDelete(LoginUserUtil.getCurrentUserId(), body.get("ids"));
         return Result.ok(Map.of("deletedCount", count));

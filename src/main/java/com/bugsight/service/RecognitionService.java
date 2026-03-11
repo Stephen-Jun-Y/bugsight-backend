@@ -1,5 +1,7 @@
 package com.bugsight.service;
 
+import cn.hutool.json.JSONArray;
+import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -16,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -75,6 +78,11 @@ public class RecognitionService {
         LambdaQueryWrapper<RecognitionHistory> wrapper = new LambdaQueryWrapper<RecognitionHistory>()
                 .eq(RecognitionHistory::getUserId, userId)
                 .orderByDesc(RecognitionHistory::getCreatedAt);
+        if (q != null && !q.isBlank()) {
+            wrapper.and(w -> w.like(RecognitionHistory::getImageOriginalName, q)
+                    .or().like(RecognitionHistory::getNote, q)
+                    .or().like(RecognitionHistory::getLocationName, q));
+        }
         return historyMapper.selectPage(pageReq, wrapper);
     }
 
@@ -115,4 +123,48 @@ public class RecognitionService {
                 .eq(RecognitionHistory::getUserId, userId);
         return historyMapper.delete(wrapper);
     }
+
+
+    public com.bugsight.dto.response.RecognitionResponse getRecognitionResult(Long userId, Long recognitionId) {
+        return toRecognitionResponse(getDetail(userId, recognitionId));
+    }
+
+    public Page<com.bugsight.dto.response.RecognitionResponse> pageRecognitionResults(Long userId, int page, int size, String q) {
+        Page<RecognitionHistory> historyPage = pageHistory(userId, page, size, q);
+        Page<com.bugsight.dto.response.RecognitionResponse> result = new Page<>(page, size, historyPage.getTotal());
+        result.setRecords(historyPage.getRecords().stream().map(this::toRecognitionResponse).toList());
+        return result;
+    }
+
+    public com.bugsight.dto.response.RecognitionResponse toRecognitionResponse(RecognitionHistory history) {
+        InsectInfo top1 = history.getTop1InsectId() != null ? insectMapper.selectById(history.getTop1InsectId()) : null;
+        List<com.bugsight.dto.response.RecognitionResponse.SimilarSpecies> similar = new ArrayList<>();
+        if (history.getTop3Result() != null && JSONUtil.isTypeJSON(history.getTop3Result())) {
+            JSONArray top3 = JSONUtil.parseArray(history.getTop3Result());
+            similar = top3.stream()
+                    .map(item -> (JSONObject) item)
+                    .map(item -> com.bugsight.dto.response.RecognitionResponse.SimilarSpecies.builder()
+                            .speciesId(Integer.valueOf(String.valueOf(item.getOrDefault("insectId", 0))))
+                            .name(String.valueOf(item.getOrDefault("nameCn", "未知")))
+                            .score(new BigDecimal(String.valueOf(item.getOrDefault("confidence", "0"))))
+                            .build())
+                    .toList();
+        }
+
+        return com.bugsight.dto.response.RecognitionResponse.builder()
+                .recognitionId(history.getId())
+                .species(com.bugsight.dto.response.RecognitionResponse.Species.builder()
+                        .id(history.getTop1InsectId())
+                        .name(top1 != null ? top1.getSpeciesNameCn() : "未知")
+                        .latinName(top1 != null ? top1.getSpeciesNameEn() : "Unknown")
+                        .build())
+                .confidence(history.getTop1Confidence())
+                .similar(similar)
+                .imageUrl(history.getImageUrl())
+                .note(history.getNote())
+                .location(history.getLocationName())
+                .capturedAt(history.getCreatedAt())
+                .build();
+    }
+
 }
