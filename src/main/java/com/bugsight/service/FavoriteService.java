@@ -60,6 +60,17 @@ public class FavoriteService {
         }
     }
 
+
+    @Transactional
+    public boolean toggleFavorite(Long userId, Integer insectId) {
+        if (isFavorited(userId, insectId)) {
+            removeFavorite(userId, insectId);
+            return false;
+        }
+        addFavorite(userId, insectId);
+        return true;
+    }
+
     public boolean isFavorited(Long userId, Integer insectId) {
         return favoriteMapper.selectCount(new LambdaQueryWrapper<Favorite>()
                 .eq(Favorite::getUserId, userId)

@@ -6,9 +6,12 @@ import cn.hutool.crypto.digest.BCrypt;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.bugsight.common.exception.BusinessException;
 import com.bugsight.common.result.ResultCode;
+import com.bugsight.dto.request.ChangePasswordRequest;
 import com.bugsight.dto.request.EditProfileRequest;
 import com.bugsight.dto.request.LoginRequest;
 import com.bugsight.dto.request.RegisterRequest;
+import com.bugsight.dto.request.UpdateMeRequest;
+import com.bugsight.dto.response.UserProfileResponse;
 import com.bugsight.entity.User;
 import com.bugsight.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
@@ -92,4 +95,55 @@ public class AuthService {
         userMapper.updateById(user);
         return user;
     }
+
+
+    public UserProfileResponse getCurrentUserProfile(Long userId) {
+        User user = getProfile(userId);
+        return toUserProfile(user);
+    }
+
+    @Transactional
+    public UserProfileResponse updateCurrentUserProfile(Long userId, UpdateMeRequest req) {
+        EditProfileRequest editReq = new EditProfileRequest();
+        editReq.setUsername(req.getNickname());
+        editReq.setBio(req.getBio());
+        editReq.setAvatarUrl(req.getAvatarUrl());
+        User updated = editProfile(userId, editReq);
+        return toUserProfile(updated, req.getLocation());
+    }
+
+    @Transactional
+    public void changePassword(Long userId, ChangePasswordRequest req) {
+        User user = userMapper.selectById(userId);
+        if (user == null) throw new BusinessException(ResultCode.USER_NOT_FOUND);
+        if (!BCrypt.checkpw(req.getCurrentPassword(), user.getPassword())) {
+            throw new BusinessException(ResultCode.WRONG_PASSWORD);
+        }
+        user.setPassword(BCrypt.hashpw(req.getNewPassword()));
+        userMapper.updateById(user);
+    }
+
+    @Transactional
+    public void deleteCurrentUser(Long userId) {
+        User user = userMapper.selectById(userId);
+        if (user == null) throw new BusinessException(ResultCode.USER_NOT_FOUND);
+        user.setIsActive(0);
+        userMapper.updateById(user);
+        StpUtil.logout(userId);
+    }
+
+    private UserProfileResponse toUserProfile(User user) {
+        return toUserProfile(user, "");
+    }
+
+    private UserProfileResponse toUserProfile(User user, String location) {
+        return UserProfileResponse.builder()
+                .id(user.getId())
+                .nickname(user.getUsername())
+                .bio(user.getBio())
+                .avatarUrl(user.getAvatarUrl())
+                .location(location != null ? location : "")
+                .build();
+    }
+
 }
