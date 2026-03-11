@@ -1,9 +1,10 @@
 package com.bugsight.controller;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.bugsight.common.result.Result;
 import com.bugsight.common.utils.LoginUserUtil;
+import com.bugsight.dto.request.AddCommentRequest;
 import com.bugsight.dto.request.CreatePostRequest;
+import com.bugsight.dto.response.PageResponse;
 import com.bugsight.entity.Post;
 import com.bugsight.entity.PostComment;
 import com.bugsight.service.PostService;
@@ -34,12 +35,25 @@ public class PostController {
 
     @Operation(summary = "动态列表")
     @GetMapping
-    public Result<Page<Post>> list(
+    public Result<PageResponse<Post>> list(
             @RequestParam(defaultValue = "recommend") String tab,
             @RequestParam(defaultValue = "1") int page,
-            @RequestParam(defaultValue = "20") int size) {
+            @RequestParam(value = "pageSize", defaultValue = "20") int pageSize,
+            @RequestParam(value = "size", required = false) Integer size) {
         Long userId = LoginUserUtil.isLogin() ? LoginUserUtil.getCurrentUserId() : null;
-        return Result.ok(postService.listPosts(tab, userId, page, size));
+        int realSize = size != null ? size : pageSize;
+        return Result.ok(PageResponse.from(postService.listPosts(tab, userId, page, realSize)));
+    }
+
+
+    @Operation(summary = "动态列表（兼容旧版路径）")
+    @GetMapping("/list")
+    public Result<PageResponse<Post>> listAlias(
+            @RequestParam(defaultValue = "recommend") String tab,
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(value = "pageSize", defaultValue = "20") int pageSize,
+            @RequestParam(value = "size", required = false) Integer size) {
+        return list(tab, page, pageSize, size);
     }
 
     @Operation(summary = "动态详情")
@@ -57,21 +71,21 @@ public class PostController {
 
     @Operation(summary = "评论列表")
     @GetMapping("/{id}/comments")
-    public Result<Page<PostComment>> comments(
+    public Result<PageResponse<PostComment>> comments(
             @PathVariable Long id,
             @RequestParam(defaultValue = "1") int page,
-            @RequestParam(defaultValue = "20") int size) {
-        return Result.ok(postService.getComments(id, page, size));
+            @RequestParam(value = "pageSize", defaultValue = "20") int pageSize,
+            @RequestParam(value = "size", required = false) Integer size) {
+        int realSize = size != null ? size : pageSize;
+        return Result.ok(PageResponse.from(postService.getComments(id, page, realSize)));
     }
 
     @Operation(summary = "发表评论")
     @PostMapping("/{id}/comments")
     public Result<PostComment> addComment(
             @PathVariable Long id,
-            @RequestBody Map<String, Object> body) {
-        String content = (String) body.get("content");
-        Long parentId = body.get("parentId") != null ? Long.valueOf(body.get("parentId").toString()) : null;
-        return Result.ok(postService.addComment(LoginUserUtil.getCurrentUserId(), id, content, parentId));
+            @Valid @RequestBody AddCommentRequest req) {
+        return Result.ok(postService.addComment(LoginUserUtil.getCurrentUserId(), id, req.getContent(), req.getParentId()));
     }
 
     @Operation(summary = "删除动态")
