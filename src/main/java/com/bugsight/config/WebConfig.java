@@ -6,7 +6,6 @@ import cn.dev33.satoken.stp.StpUtil;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerProperties;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
@@ -22,6 +21,7 @@ public class WebConfig implements WebMvcConfigurer {
             "/webjars/**",
             "/files/**",           // 静态文件访问
             "/insects/popular",    // 首页热门，允许匿名
+            "/health",             // 健康检查
     };
 
     @Override
