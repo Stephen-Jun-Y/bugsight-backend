@@ -6,6 +6,7 @@ import com.bugsight.common.utils.LoginUserUtil;
 import com.bugsight.dto.request.EditProfileRequest;
 import com.bugsight.dto.request.LoginRequest;
 import com.bugsight.dto.request.RegisterRequest;
+import com.bugsight.dto.response.AuthTokenResponse;
 import com.bugsight.entity.User;
 import com.bugsight.service.AuthService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -26,7 +27,7 @@ public class AuthController {
 
     @Operation(summary = "用户注册")
     @PostMapping("/register")
-    public Result<Map<String, Object>> register(@Valid @RequestBody RegisterRequest req) {
+    public Result<AuthTokenResponse> register(@Valid @RequestBody RegisterRequest req) {
         User user = authService.register(req);
         StpUtil.login(user.getId());
         return Result.ok(buildTokenResponse(user, authService.getToken()));
@@ -34,7 +35,7 @@ public class AuthController {
 
     @Operation(summary = "用户登录")
     @PostMapping("/login")
-    public Result<Map<String, Object>> login(@Valid @RequestBody LoginRequest req) {
+    public Result<AuthTokenResponse> login(@Valid @RequestBody LoginRequest req) {
         User user = authService.login(req);
         return Result.ok(buildTokenResponse(user, authService.getToken()));
     }
@@ -58,12 +59,20 @@ public class AuthController {
         return Result.ok(authService.editProfile(LoginUserUtil.getCurrentUserId(), req));
     }
 
-    private Map<String, Object> buildTokenResponse(User user, String token) {
-        return Map.of(
-                "token", token,
-                "userId", user.getId(),
-                "username", user.getUsername(),
+    private AuthTokenResponse buildTokenResponse(User user, String token) {
+        Map<String, Object> userInfo = Map.of(
+                "id", user.getId(),
+                "nickname", user.getUsername(),
                 "avatarUrl", user.getAvatarUrl() != null ? user.getAvatarUrl() : ""
         );
+        return AuthTokenResponse.builder()
+                .accessToken(token)
+                .refreshToken(token)
+                .token(token)
+                .userId(user.getId())
+                .nickname(user.getUsername())
+                .avatarUrl(user.getAvatarUrl() != null ? user.getAvatarUrl() : "")
+                .user(userInfo)
+                .build();
     }
 }
