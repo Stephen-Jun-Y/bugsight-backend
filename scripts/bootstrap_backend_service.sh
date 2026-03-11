@@ -37,6 +37,8 @@ if [[ ! -d "${SRC_DIR}/.git" ]]; then
   git clone https://github.com/Stephen-Jun-Y/bugsight-backend.git "${SRC_DIR}"
 else
   echo "[4/8] 更新代码..."
+  # 避免 root 在非本人 owner 目录执行 git 触发 dubious ownership
+  git config --global --add safe.directory "${SRC_DIR}"
   git -C "${SRC_DIR}" pull --ff-only
 fi
 
