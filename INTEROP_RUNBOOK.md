@@ -29,27 +29,6 @@ sudo ufw status
 ```
 
 ---
-
-
-## 0.1 你当前这类报错的结论（基于你贴的输出）
-
-你提供的输出：
-- `Unit bugsight-backend.service could not be found.`
-- `journalctl -u bugsight-backend` 无记录
-- `127.0.0.1:8080` 连接失败
-
-这说明**服务根本没有注册到 systemd**（不是 CORS、不是 Token、不是接口路径问题）。
-
-先执行：
-
-```bash
-cd /opt/bugsight/source
-sudo bash scripts/bootstrap_backend_service.sh
-```
-
-如果提示 `.env` 未配置，会自动退出并提示你先填写 DB/JWT，再重跑脚本。
-
----
 ## 1. API 可访问性诊断（最小闭环）
 
 ```bash
