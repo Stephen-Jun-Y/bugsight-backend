@@ -29,7 +29,6 @@ sudo ufw status
 ```
 
 ---
-
 ## 1. API 可访问性诊断（最小闭环）
 
 ```bash
