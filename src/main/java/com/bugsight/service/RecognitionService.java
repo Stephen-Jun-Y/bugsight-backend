@@ -1,5 +1,7 @@
 package com.bugsight.service;
 
+import cn.hutool.json.JSONArray;
+import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -138,12 +140,15 @@ public class RecognitionService {
         InsectInfo top1 = history.getTop1InsectId() != null ? insectMapper.selectById(history.getTop1InsectId()) : null;
         List<com.bugsight.dto.response.RecognitionResponse.SimilarSpecies> similar = new ArrayList<>();
         if (history.getTop3Result() != null && JSONUtil.isTypeJSON(history.getTop3Result())) {
-            List<Map<String, Object>> top3 = JSONUtil.toList(history.getTop3Result(), Map.class);
-            similar = top3.stream().map(item -> com.bugsight.dto.response.RecognitionResponse.SimilarSpecies.builder()
-                    .speciesId(Integer.valueOf(String.valueOf(item.getOrDefault("insectId", 0))))
-                    .name(String.valueOf(item.getOrDefault("nameCn", "未知")))
-                    .score(new BigDecimal(String.valueOf(item.getOrDefault("confidence", "0"))))
-                    .build()).toList();
+            JSONArray top3 = JSONUtil.parseArray(history.getTop3Result());
+            similar = top3.stream()
+                    .map(item -> (JSONObject) item)
+                    .map(item -> com.bugsight.dto.response.RecognitionResponse.SimilarSpecies.builder()
+                            .speciesId(Integer.valueOf(String.valueOf(item.getOrDefault("insectId", 0))))
+                            .name(String.valueOf(item.getOrDefault("nameCn", "未知")))
+                            .score(new BigDecimal(String.valueOf(item.getOrDefault("confidence", "0"))))
+                            .build())
+                    .toList();
         }
 
         return com.bugsight.dto.response.RecognitionResponse.builder()
