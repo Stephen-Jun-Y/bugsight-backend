@@ -60,7 +60,9 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           password: ${{ secrets.SERVER_PASSWORD }}
           source: "bugsight-backend.jar"
-          target: "/opt/bugsight/"
+          target: "/tmp/bugsight-deploy/"
+          timeout: 120s
+          overwrite: true
 
       - name: Restart backend service
         uses: appleboy/ssh-action@v1.0.3
@@ -70,12 +72,15 @@ jobs:
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
             set -e
+            sudo mkdir -p /opt/bugsight
+            sudo install -o bugsight -g bugsight -m 644 /tmp/bugsight-deploy/bugsight-backend.jar /opt/bugsight/bugsight-backend.jar
+            rm -f /tmp/bugsight-deploy/bugsight-backend.jar
             if [ ! -f /etc/systemd/system/bugsight-backend.service ]; then
               echo "Service not found, creating from current repo template..."
-              cp /opt/bugsight/source/bugsight-backend.service /etc/systemd/system/bugsight-backend.service
-              systemctl daemon-reload
-              systemctl enable bugsight-backend
+              sudo cp /opt/bugsight/source/bugsight-backend.service /etc/systemd/system/bugsight-backend.service
+              sudo systemctl daemon-reload
+              sudo systemctl enable bugsight-backend
             fi
-            systemctl restart bugsight-backend
+            sudo systemctl restart bugsight-backend
             sleep 5
-            systemctl status bugsight-backend --no-pager
+            sudo systemctl status bugsight-backend --no-pager
