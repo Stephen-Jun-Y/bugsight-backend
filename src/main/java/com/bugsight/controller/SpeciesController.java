@@ -2,6 +2,7 @@ package com.bugsight.controller;
 
 import com.bugsight.common.result.Result;
 import com.bugsight.dto.response.PageResponse;
+import com.bugsight.dto.response.SpeciesDetailResponse;
 import com.bugsight.entity.InsectInfo;
 import com.bugsight.service.InsectService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -32,13 +33,13 @@ public class SpeciesController {
 
     @Operation(summary = "物种详情")
     @GetMapping("/{id}")
-    public Result<InsectInfo> detail(@PathVariable Integer id) {
-        return Result.ok(insectService.getById(id));
+    public Result<SpeciesDetailResponse> detail(@PathVariable Integer id) {
+        return Result.ok(com.bugsight.service.SpeciesResponseAssembler.toResponse(insectService.getById(id)));
     }
 
     @Operation(summary = "相似物种")
     @GetMapping("/{id}/similar")
-    public Result<List<InsectInfo>> similar(@PathVariable Integer id) {
-        return Result.ok(insectService.getSimilar(id));
+    public Result<List<SpeciesDetailResponse>> similar(@PathVariable Integer id) {
+        return Result.ok(com.bugsight.service.SpeciesResponseAssembler.toResponses(insectService.getSimilar(id)));
     }
 }

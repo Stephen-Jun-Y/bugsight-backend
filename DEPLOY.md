@@ -22,6 +22,15 @@ sudo chown bugsight:bugsight /opt/bugsight /var/bugsight /var/log/bugsight
 mysql -u root -p < schema.sql
 ```
 
+### 2.1 导入物种百科底稿（推荐）
+```bash
+cd /opt/bugsight/source
+DB_HOST=127.0.0.1 DB_NAME=bugsight DB_USER=bugsight_user DB_PASS=your_db_password \
+python3 scripts/load_insect_catalog.py --apply
+```
+
+该步骤会将与模型 25 个类别对应的 `insect_info` 基础百科档案导入数据库。
+
 ### 3. 创建环境变量文件
 ```bash
 sudo nano /opt/bugsight/.env
@@ -75,8 +84,13 @@ tail -f /var/log/bugsight/app.log
 
 ## 四、FastAPI 推理服务启动
 ```bash
-cd /opt/bugsight/inference
-pip install fastapi uvicorn torch torchvision pillow
+cd /opt/bugsight/source/scripts/ml
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+
+MODEL_PATH=/opt/bugsight/source/scripts/data/models/resnet50_ip102_balanced/resnet50_ip102_balanced.onnx \
+LABELS_PATH=/opt/bugsight/source/scripts/data/models/resnet50_ip102_balanced/labels.json \
 uvicorn predict_api:app --host 127.0.0.1 --port 8000 --workers 2
 ```
 

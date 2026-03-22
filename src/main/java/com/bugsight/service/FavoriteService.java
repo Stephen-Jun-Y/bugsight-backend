@@ -20,12 +20,15 @@ public class FavoriteService {
     private final InsectInfoMapper insectMapper;
 
     public Page<InsectInfo> listFavorites(Long userId, int page, int size) {
+        return listFavoritesByUser(userId, page, size);
+    }
+
+    public Page<InsectInfo> listFavoritesByUser(Long userId, int page, int size) {
         Page<Favorite> favPage = favoriteMapper.selectPage(new Page<>(page, size),
                 new LambdaQueryWrapper<Favorite>()
                         .eq(Favorite::getUserId, userId)
                         .orderByDesc(Favorite::getCreatedAt));
 
-        // 关联查询昆虫信息
         Page<InsectInfo> result = new Page<>(page, size, favPage.getTotal());
         result.setRecords(favPage.getRecords().stream()
                 .map(f -> insectMapper.selectById(f.getInsectId()))

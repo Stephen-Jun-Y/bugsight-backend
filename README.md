@@ -15,17 +15,71 @@
 
 ## 快速启动（本地开发）
 
+如果你要跑完整联调（前端 + Spring Boot + FastAPI 推理），优先使用仓库外的统一脚本：`/Users/Zhuanz1/Documents/Playground/bugsight-local-dev.sh`
+
+```bash
+# 启动全部本地服务
+DB_HOST=localhost DB_NAME=bugsight DB_USER=your_user DB_PASS=your_pass /Users/Zhuanz1/Documents/Playground/bugsight-local-dev.sh start
+
+# 查看状态
+/Users/Zhuanz1/Documents/Playground/bugsight-local-dev.sh status
+
+# 查看最近日志
+/Users/Zhuanz1/Documents/Playground/bugsight-local-dev.sh logs
+
+# 重启全部服务
+DB_HOST=localhost DB_NAME=bugsight DB_USER=your_user DB_PASS=your_pass /Users/Zhuanz1/Documents/Playground/bugsight-local-dev.sh restart
+
+# 停止全部服务
+/Users/Zhuanz1/Documents/Playground/bugsight-local-dev.sh stop
+```
+
+脚本会统一完成：
+- 写入前端 `VITE_API_BASE`
+- 启动前端 `Vite`
+- 启动后端 `Spring Boot`
+- 启动本地 FastAPI + ONNX 推理服务
+- 执行健康检查并输出日志位置
+
+如果你只想单独跑后端，再使用下面这套：
+
 ```bash
 # 1. 创建数据库并执行 schema.sql
 mysql -u root -p < src/main/resources/schema.sql
 
-# 2. 修改 application.yml 中的数据库连接配置
-
-# 3. 启动
+# 2. 单独启动后端
 mvn spring-boot:run
 ```
 
 启动后访问 API 文档：http://localhost:8080/api/v1/doc.html
+
+## ResNet50 模型训练与推理（毕业设计）
+
+模型流水线脚本位于 `scripts/ml`，包含：
+- 平衡数据集构建（25 类 * 500 张，70/15/15）
+- ImageNet 预训练 ResNet50 两阶段训练
+- ONNX 导出与推理服务（FastAPI `/predict`）
+
+快速说明见：`scripts/ml/README.md`
+
+## 物种百科底稿导入
+
+已新增 25 个与 ResNet50 类别对应的物种/类群双语底稿：`scripts/data/insect_catalog_seed.json`。
+
+特点：
+- 支持重复导入（upsert），不会覆盖已有 `recognition_count`
+- 兼容 `class_id = 0`
+- 对模型中的类群标签（如 `Miridae`、`Cicadellidae`、`Locustoidea`）按类群层级建档，不强行伪装成单一物种
+- 中文主展示 + 英文副展示所需字段已一起维护并可重复导库
+
+本地导入命令：
+
+```bash
+DB_HOST=localhost DB_NAME=bugsight DB_USER=your_user DB_PASS=your_pass \
+python3 scripts/load_insect_catalog.py --apply
+```
+
+说明文档见：`scripts/data/insect_catalog_seed.md`
 
 ## 项目结构
 

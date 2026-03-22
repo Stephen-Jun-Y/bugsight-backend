@@ -18,4 +18,8 @@ public class PostComment {
     private Integer isDeleted;
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createdAt;
+    @TableField(exist = false)
+    private String authorNickname;
+    @TableField(exist = false)
+    private String authorAvatarUrl;
 }

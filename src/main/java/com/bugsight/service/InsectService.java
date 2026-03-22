@@ -16,6 +16,7 @@ import java.util.List;
 public class InsectService {
 
     private final InsectInfoMapper insectMapper;
+    private final InsectCatalogService insectCatalogService;
 
     public List<InsectInfo> getPopular(int limit) {
         return insectMapper.selectList(new LambdaQueryWrapper<InsectInfo>()
@@ -35,7 +36,7 @@ public class InsectService {
     }
 
     public InsectInfo getById(Integer id) {
-        InsectInfo insect = insectMapper.selectById(id);
+        InsectInfo insect = insectCatalogService.getOrCreate(id);
         if (insect == null) throw new BusinessException(ResultCode.NOT_FOUND);
         return insect;
     }
@@ -43,6 +44,9 @@ public class InsectService {
     /** 相似物种：同科下按识别量取 Top5（排除自身） */
     public List<InsectInfo> getSimilar(Integer id) {
         InsectInfo self = getById(id);
+        if (insectMapper.selectById(id) == null) {
+            return insectCatalogService.listFallbackSimilar(id, 5);
+        }
         return insectMapper.selectList(new LambdaQueryWrapper<InsectInfo>()
                 .eq(InsectInfo::getFamilyName, self.getFamilyName())
                 .ne(InsectInfo::getId, id)

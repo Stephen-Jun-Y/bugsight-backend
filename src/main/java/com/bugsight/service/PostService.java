@@ -14,6 +14,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -24,6 +26,7 @@ public class PostService {
     private final PostLikeMapper likeMapper; // need to create this mapper
     private final UserFollowMapper followMapper;
     private final NotificationMapper notificationMapper;
+    private final UserMapper userMapper;
     private final FileService fileService;
 
     @Transactional
@@ -44,6 +47,7 @@ public class PostService {
             post.setImageUrl(fileService.saveImage(image));
         }
         postMapper.insert(post);
+        applyAuthorInfo(List.of(post));
         return post;
     }
 
@@ -62,12 +66,33 @@ public class PostService {
             if (followingIds.isEmpty()) return new Page<>(page, size);
             wrapper.in(Post::getUserId, followingIds);
         }
-        return postMapper.selectPage(pageReq, wrapper);
+        Page<Post> result = postMapper.selectPage(pageReq, wrapper);
+        applyAuthorInfo(result.getRecords());
+        applyLikedState(result.getRecords(), currentUserId);
+        return result;
+    }
+
+    public Page<Post> listUserPosts(Long targetUserId, Long currentUserId, int page, int size) {
+        Page<Post> result = postMapper.selectPage(new Page<>(page, size),
+                new LambdaQueryWrapper<Post>()
+                        .eq(Post::getUserId, targetUserId)
+                        .eq(Post::getVisibility, 1)
+                        .orderByDesc(Post::getCreatedAt));
+        applyAuthorInfo(result.getRecords());
+        applyLikedState(result.getRecords(), currentUserId);
+        return result;
     }
 
     public Post getPostById(Long id) {
         Post post = postMapper.selectById(id);
         if (post == null) throw new BusinessException(ResultCode.POST_NOT_FOUND);
+        return post;
+    }
+
+    public Post getPostDetail(Long id, Long currentUserId) {
+        Post post = getPostById(id);
+        applyAuthorInfo(List.of(post));
+        applyLikedState(List.of(post), currentUserId);
         return post;
     }
 
@@ -113,15 +138,18 @@ public class PostService {
         postMapper.update(null, new LambdaUpdateWrapper<Post>()
                 .eq(Post::getId, postId)
                 .setSql("comment_count = comment_count + 1"));
+        applyAuthorInfoToComments(List.of(comment));
         return comment;
     }
 
     public Page<PostComment> getComments(Long postId, int page, int size) {
-        return commentMapper.selectPage(new Page<>(page, size),
+        Page<PostComment> result = commentMapper.selectPage(new Page<>(page, size),
                 new LambdaQueryWrapper<PostComment>()
                         .eq(PostComment::getPostId, postId)
                         .isNull(PostComment::getParentId)
                         .orderByAsc(PostComment::getCreatedAt));
+        applyAuthorInfoToComments(result.getRecords());
+        return result;
     }
 
     @Transactional
@@ -145,5 +173,87 @@ public class PostService {
         notification.setContent(content);
         notification.setIsRead(0);
         notificationMapper.insert(notification);
+    }
+
+    private void applyLikedState(List<Post> posts, Long currentUserId) {
+        if (posts == null || posts.isEmpty()) {
+            return;
+        }
+
+        if (currentUserId == null) {
+            posts.forEach(post -> post.setLikedByCurrentUser(false));
+            return;
+        }
+
+        List<Long> postIds = posts.stream()
+                .map(Post::getId)
+                .filter(id -> id != null)
+                .toList();
+        if (postIds.isEmpty()) {
+            posts.forEach(post -> post.setLikedByCurrentUser(false));
+            return;
+        }
+
+        Set<Long> likedPostIds = likeMapper.selectList(new LambdaQueryWrapper<PostLike>()
+                        .eq(PostLike::getUserId, currentUserId)
+                        .in(PostLike::getPostId, postIds)
+                        .select(PostLike::getPostId))
+                .stream()
+                .map(PostLike::getPostId)
+                .collect(Collectors.toSet());
+
+        posts.forEach(post -> post.setLikedByCurrentUser(likedPostIds.contains(post.getId())));
+    }
+
+    private void applyAuthorInfo(List<Post> posts) {
+        if (posts == null || posts.isEmpty()) {
+            return;
+        }
+
+        List<Long> userIds = posts.stream()
+                .map(Post::getUserId)
+                .filter(id -> id != null)
+                .distinct()
+                .toList();
+        if (userIds.isEmpty()) {
+            return;
+        }
+
+        java.util.Map<Long, User> userMap = userMapper.selectBatchIds(userIds).stream()
+                .collect(Collectors.toMap(User::getId, user -> user));
+
+        posts.forEach(post -> {
+            User author = userMap.get(post.getUserId());
+            if (author != null) {
+                post.setAuthorNickname(author.getUsername());
+                post.setAuthorAvatarUrl(author.getAvatarUrl());
+            }
+        });
+    }
+
+    private void applyAuthorInfoToComments(List<PostComment> comments) {
+        if (comments == null || comments.isEmpty()) {
+            return;
+        }
+
+        List<Long> userIds = comments.stream()
+                .map(PostComment::getUserId)
+                .filter(id -> id != null)
+                .distinct()
+                .toList();
+        if (userIds.isEmpty()) {
+            return;
+        }
+
+        java.util.Map<Long, User> userMap = userMapper.selectBatchIds(userIds).stream()
+                .collect(Collectors.toMap(User::getId, user -> user));
+
+        comments.forEach(comment -> {
+            User author = userMap.get(comment.getUserId());
+            if (author != null) {
+                comment.setAuthorNickname(author.getUsername());
+                comment.setAuthorAvatarUrl(author.getAvatarUrl());
+            }
+        });
     }
 }

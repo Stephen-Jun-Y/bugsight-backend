@@ -8,3 +8,9 @@ target/
 .idea/
 *.iml
 .DS_Store
+scripts/ml/.venv/
+scripts/ml/__pycache__/
+scripts/ml/*.pyc
+scripts/data/*
+!scripts/data/insect_catalog_seed.json
+!scripts/data/insect_catalog_seed.md

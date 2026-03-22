@@ -29,24 +29,25 @@ public class RecognitionService {
 
     private final RecognitionHistoryMapper historyMapper;
     private final InsectInfoMapper insectMapper;
+    private final InsectCatalogService insectCatalogService;
     private final InferenceService inferenceService;
     private final FileService fileService;
 
     @Transactional
     public RecognitionHistory recognize(Long userId, MultipartFile file, Integer source,
                                         String locationName, BigDecimal lat, BigDecimal lng) {
-        // 1. 保存图片
-        String imageUrl = fileService.saveImage(file);
-
-        // 2. 调用推理服务
+        // 1. 先调用推理服务，避免 transferTo 后临时上传文件被移动导致二次读取失败
         InferenceService.InferenceResult inferResult = inferenceService.predict(file);
+
+        // 2. 保存图片
+        String imageUrl = fileService.saveImage(file);
 
         // 3. 构建 top3 JSON
         List<Map<String, Object>> top3List = inferResult.getTop3().stream().map(item -> {
-            InsectInfo insect = insectMapper.selectById(item.getClassIndex());
+            InsectInfo insect = insectCatalogService.getOrCreate(item.getClassIndex());
             return Map.<String, Object>of(
                     "insectId", item.getClassIndex(),
-                    "nameCn", insect != null ? insect.getSpeciesNameCn() : "未知",
+                    "nameCn", insect != null ? insect.getSpeciesNameCn() : "未收录",
                     "confidence", item.getConfidence()
             );
         }).collect(Collectors.toList());
@@ -137,7 +138,7 @@ public class RecognitionService {
     }
 
     public com.bugsight.dto.response.RecognitionResponse toRecognitionResponse(RecognitionHistory history) {
-        InsectInfo top1 = history.getTop1InsectId() != null ? insectMapper.selectById(history.getTop1InsectId()) : null;
+        InsectInfo top1 = history.getTop1InsectId() != null ? insectCatalogService.getOrCreate(history.getTop1InsectId()) : null;
         List<com.bugsight.dto.response.RecognitionResponse.SimilarSpecies> similar = new ArrayList<>();
         if (history.getTop3Result() != null && JSONUtil.isTypeJSON(history.getTop3Result())) {
             JSONArray top3 = JSONUtil.parseArray(history.getTop3Result());

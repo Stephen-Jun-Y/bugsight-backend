@@ -59,7 +59,8 @@ public class PostController {
     @Operation(summary = "动态详情")
     @GetMapping("/{id}")
     public Result<Post> detail(@PathVariable Long id) {
-        return Result.ok(postService.getPostById(id));
+        Long userId = LoginUserUtil.isLogin() ? LoginUserUtil.getCurrentUserId() : null;
+        return Result.ok(postService.getPostDetail(id, userId));
     }
 
     @Operation(summary = "点赞/取消点赞")

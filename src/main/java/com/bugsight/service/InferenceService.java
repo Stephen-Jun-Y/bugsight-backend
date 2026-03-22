@@ -1,6 +1,6 @@
 package com.bugsight.service;
 
-import cn.hutool.http.HttpUtil;
+import cn.hutool.http.HttpRequest;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.bugsight.common.exception.BusinessException;
@@ -12,9 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Slf4j
 @Service
@@ -40,10 +38,11 @@ public class InferenceService {
      */
     public InferenceResult predict(MultipartFile file) {
         try {
-            Map<String, Object> params = new HashMap<>();
-            params.put("file", file.getBytes());
-
-            String response = HttpUtil.post(inferenceUrl + "/predict", params);
+            String filename = file.getOriginalFilename() != null ? file.getOriginalFilename() : "upload.jpg";
+            String response = HttpRequest.post(inferenceUrl + "/predict")
+                    .form("file", file.getBytes(), filename)
+                    .execute()
+                    .body();
             JSONObject json = JSONUtil.parseObj(response);
 
             InferenceResult result = new InferenceResult();

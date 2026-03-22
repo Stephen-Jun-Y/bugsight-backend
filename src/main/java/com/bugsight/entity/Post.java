@@ -27,4 +27,10 @@ public class Post {
     private LocalDateTime createdAt;
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updatedAt;
+    @TableField(exist = false)
+    private Boolean likedByCurrentUser;
+    @TableField(exist = false)
+    private String authorNickname;
+    @TableField(exist = false)
+    private String authorAvatarUrl;
 }

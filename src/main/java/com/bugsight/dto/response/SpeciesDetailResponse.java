@@ -1,15 +1,14 @@
-package com.bugsight.entity;
+package com.bugsight.dto.response;
 
-import com.baomidou.mybatisplus.annotation.*;
+import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDateTime;
 
 @Data
-@TableName("insect_info")
-public class InsectInfo {
+@Builder
+public class SpeciesDetailResponse {
 
-    @TableId(type = IdType.AUTO)
     private Integer id;
     private String speciesNameCn;
     private String speciesNameEn;
@@ -36,10 +35,22 @@ public class InsectInfo {
     private String habitsEn;
     private Integer recognitionCount;
     private String coverImageUrl;
-
-    @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createdAt;
-
-    @TableField(fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updatedAt;
+    private I18nPayload i18n;
+
+    @Data
+    @Builder
+    public static class I18nPayload {
+        private LocalizedTextResponse orderName;
+        private LocalizedTextResponse familyName;
+        private LocalizedTextResponse genusName;
+        private LocalizedTextResponse bodyLength;
+        private LocalizedTextResponse distribution;
+        private LocalizedTextResponse activeSeason;
+        private LocalizedTextResponse protectionLevel;
+        private LocalizedTextResponse description;
+        private LocalizedTextResponse morphology;
+        private LocalizedTextResponse habits;
+    }
 }

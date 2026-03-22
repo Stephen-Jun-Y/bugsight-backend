@@ -51,6 +51,14 @@ public class AuthService {
 
     public User login(LoginRequest req) {
         User user = userMapper.selectOne(new LambdaQueryWrapper<User>()
+                .select(
+                        User::getId,
+                        User::getUsername,
+                        User::getEmail,
+                        User::getPassword,
+                        User::getAvatarUrl,
+                        User::getIsActive
+                )
                 .eq(User::getEmail, req.getEmail()));
         if (user == null) {
             throw new BusinessException(ResultCode.USER_NOT_FOUND);
@@ -58,7 +66,7 @@ public class AuthService {
         if (user.getIsActive() == 0) {
             throw new BusinessException(ResultCode.ACCOUNT_DISABLED);
         }
-        if (!BCrypt.checkpw(req.getPassword(), user.getPassword())) {
+        if (user.getPassword() == null || !BCrypt.checkpw(req.getPassword(), user.getPassword())) {
             throw new BusinessException(ResultCode.WRONG_PASSWORD);
         }
         StpUtil.login(user.getId());
