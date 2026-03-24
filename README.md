@@ -57,10 +57,22 @@ mvn spring-boot:run
 
 模型流水线脚本位于 `scripts/ml`，包含：
 - 平衡数据集构建（25 类 * 500 张，70/15/15）
-- ImageNet 预训练 ResNet50 两阶段训练
-- ONNX 导出与推理服务（FastAPI `/predict`）
+- ImageNet 预训练 ResNet50 两阶段训练（当前主路线：25 类正样本优化）
+- ONNX 导出与推理服务（FastAPI `/predict`，支持 `isUnknown`）
 
 快速说明见：`scripts/ml/README.md`
+
+如果你要在 AutoDL 上直接开训当前主方案（25 类正样本优化），仓库已经附带：
+
+```bash
+bash scripts/ml/autodl_train_positive_only.sh
+```
+
+如果后续你又想回到开放集方案，再使用：
+
+```bash
+bash scripts/ml/autodl_train_open_set.sh
+```
 
 ## 物种百科底稿导入
 

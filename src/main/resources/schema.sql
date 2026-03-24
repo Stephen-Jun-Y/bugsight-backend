@@ -161,6 +161,20 @@ CREATE TABLE IF NOT EXISTS notifications (
     KEY idx_user_id (user_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='通知表';
 
+CREATE TABLE IF NOT EXISTS search_keyword_stats (
+    id                 BIGINT       NOT NULL AUTO_INCREMENT,
+    keyword            VARCHAR(120) NOT NULL COMMENT '原始展示关键词',
+    keyword_normalized VARCHAR(120) NOT NULL COMMENT '归一化关键词',
+    search_count       BIGINT       NOT NULL DEFAULT 0,
+    last_searched_at   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    created_at         DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at         DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_keyword_normalized (keyword_normalized),
+    KEY idx_search_count (search_count),
+    KEY idx_last_searched_at (last_searched_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='搜索关键词统计表';
+
 -- ── 成就定义表 ────────────────────────────────────────────
 CREATE TABLE IF NOT EXISTS achievements (
     id          INT          NOT NULL AUTO_INCREMENT,

@@ -5,6 +5,7 @@ import com.bugsight.dto.response.PageResponse;
 import com.bugsight.dto.response.SpeciesDetailResponse;
 import com.bugsight.entity.InsectInfo;
 import com.bugsight.service.InsectService;
+import com.bugsight.service.SearchKeywordStatService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,7 @@ import java.util.List;
 public class SpeciesController {
 
     private final InsectService insectService;
+    private final SearchKeywordStatService searchKeywordStatService;
 
     @Operation(summary = "物种搜索")
     @GetMapping("/search")
@@ -29,6 +31,13 @@ public class SpeciesController {
             @RequestParam(value = "pageSize", defaultValue = "20") int pageSize,
             @RequestParam(value = "size", required = false) Integer size) {
         return Result.ok(PageResponse.from(insectService.search(q, harmLevel, page, size != null ? size : pageSize)));
+    }
+
+    @Operation(summary = "热门搜索关键词")
+    @GetMapping("/hot-searches")
+    public Result<List<SearchKeywordStatService.HotSearchItem>> hotSearches(
+            @RequestParam(defaultValue = "8") int limit) {
+        return Result.ok(searchKeywordStatService.listHotSearches(limit));
     }
 
     @Operation(summary = "物种详情")

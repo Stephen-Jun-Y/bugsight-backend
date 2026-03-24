@@ -48,6 +48,14 @@ file:
   upload-path: ${FILE_UPLOAD_PATH:/var/bugsight/uploads}
   access-url: ${FILE_ACCESS_URL:http://localhost:8080/api/v1/files}
 
+storage:
+  provider: ${STORAGE_PROVIDER:local}
+  minio:
+    endpoint: ${STORAGE_MINIO_ENDPOINT:http://127.0.0.1:9000}
+    access-key: ${STORAGE_MINIO_ACCESS_KEY:}
+    secret-key: ${STORAGE_MINIO_SECRET_KEY:}
+    bucket: ${STORAGE_MINIO_BUCKET:bugsight-images}
+
 # FastAPI 推理服务地址（内网）
 inference:
   url: ${INFERENCE_URL:http://127.0.0.1:8000}

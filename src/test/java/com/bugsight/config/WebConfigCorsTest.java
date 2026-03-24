@@ -8,6 +8,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.handler.MappedInterceptor;
 
 import java.util.List;
+import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -27,6 +28,19 @@ class WebConfigCorsTest {
 
         boolean allowed = assertDoesNotThrow(() -> interceptor.preHandle(request, response, new Object()));
         assertTrue(allowed);
+    }
+
+    @Test
+    void allowsAnonymousSpeciesSearchEndpoints() throws Exception {
+        java.lang.reflect.Field field = WebConfig.class.getDeclaredField("WHITE_LIST");
+        field.setAccessible(true);
+        String[] whiteList = (String[]) field.get(null);
+
+        List<String> publicSpeciesPaths = Arrays.asList(whiteList);
+        assertTrue(publicSpeciesPaths.contains("/species/search"));
+        assertTrue(publicSpeciesPaths.contains("/species/hot-searches"));
+        assertTrue(publicSpeciesPaths.contains("/species/*"));
+        assertTrue(publicSpeciesPaths.contains("/species/*/similar"));
     }
 
     private HandlerInterceptor extractInterceptor(Object registered) {

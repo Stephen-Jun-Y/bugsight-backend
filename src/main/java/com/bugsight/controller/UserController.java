@@ -4,11 +4,13 @@ import com.bugsight.common.result.Result;
 import com.bugsight.common.utils.LoginUserUtil;
 import com.bugsight.dto.request.ChangePasswordRequest;
 import com.bugsight.dto.request.UpdateMeRequest;
+import com.bugsight.dto.response.UserAchievementsResponse;
 import com.bugsight.dto.response.PageResponse;
 import com.bugsight.dto.response.PublicUserProfileResponse;
 import com.bugsight.dto.response.UserProfileResponse;
 import com.bugsight.entity.InsectInfo;
 import com.bugsight.entity.Post;
+import com.bugsight.service.AchievementService;
 import com.bugsight.service.AuthService;
 import com.bugsight.service.FavoriteService;
 import com.bugsight.service.PostService;
@@ -31,11 +33,18 @@ public class UserController {
     private final UserProfileService userProfileService;
     private final PostService postService;
     private final FavoriteService favoriteService;
+    private final AchievementService achievementService;
 
     @Operation(summary = "获取当前用户信息")
     @GetMapping("/me")
     public Result<UserProfileResponse> me() {
         return Result.ok(authService.getCurrentUserProfile(LoginUserUtil.getCurrentUserId()));
+    }
+
+    @Operation(summary = "获取当前用户成就徽章")
+    @GetMapping("/me/achievements")
+    public Result<UserAchievementsResponse> myAchievements() {
+        return Result.ok(achievementService.getUserAchievements(LoginUserUtil.getCurrentUserId()));
     }
 
     @Operation(summary = "更新个人资料")

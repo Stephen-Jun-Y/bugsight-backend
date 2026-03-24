@@ -17,6 +17,7 @@ public class InsectService {
 
     private final InsectInfoMapper insectMapper;
     private final InsectCatalogService insectCatalogService;
+    private final SearchKeywordStatService searchKeywordStatService;
 
     public List<InsectInfo> getPopular(int limit) {
         return insectMapper.selectList(new LambdaQueryWrapper<InsectInfo>()
@@ -25,6 +26,9 @@ public class InsectService {
     }
 
     public Page<InsectInfo> search(String q, Integer harmLevel, int page, int size) {
+        if (q != null && !q.isBlank()) {
+            searchKeywordStatService.recordSearchKeyword(q);
+        }
         Page<InsectInfo> pageReq = new Page<>(page, size);
         LambdaQueryWrapper<InsectInfo> wrapper = new LambdaQueryWrapper<InsectInfo>()
                 .like(q != null && !q.isBlank(), InsectInfo::getSpeciesNameCn, q)

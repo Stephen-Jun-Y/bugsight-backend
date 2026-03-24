@@ -24,6 +24,10 @@ public class WebConfig implements WebMvcConfigurer {
             "/webjars/**",
             "/files/**",           // 静态文件访问
             "/insects/popular",    // 首页热门，允许匿名
+            "/species/search",     // 物种搜索，允许匿名
+            "/species/hot-searches", // 热门搜索，允许匿名
+            "/species/*",          // 物种详情，允许匿名
+            "/species/*/similar",  // 相似物种，允许匿名
             "/users/*/profile",    // 公开用户主页
             "/users/*/posts",      // 公开用户动态
             "/users/*/favorites",  // 公开用户收藏

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 @Slf4j
@@ -29,6 +30,7 @@ public class InferenceService {
 
     @Data
     public static class InferenceResult {
+        private Boolean isUnknown;
         private InferenceItem top1;
         private List<InferenceItem> top3;
     }
@@ -46,14 +48,19 @@ public class InferenceService {
             JSONObject json = JSONUtil.parseObj(response);
 
             InferenceResult result = new InferenceResult();
+            result.setIsUnknown(json.getBool("isUnknown", false));
 
             JSONObject top1Json = json.getJSONObject("top1");
-            InferenceItem top1 = new InferenceItem();
-            top1.setClassIndex(top1Json.getInt("classIndex"));
-            top1.setConfidence(top1Json.getDouble("confidence"));
-            result.setTop1(top1);
+            if (top1Json != null && !top1Json.isEmpty()) {
+                InferenceItem top1 = new InferenceItem();
+                top1.setClassIndex(top1Json.getInt("classIndex"));
+                top1.setConfidence(top1Json.getDouble("confidence"));
+                result.setTop1(top1);
+            }
 
-            List<InferenceItem> top3 = json.getJSONArray("top3").toList(InferenceItem.class);
+            List<InferenceItem> top3 = json.getJSONArray("top3") != null
+                    ? json.getJSONArray("top3").toList(InferenceItem.class)
+                    : Collections.emptyList();
             result.setTop3(top3);
 
             return result;

@@ -5,6 +5,7 @@
 - Java 17（`apt install openjdk-17-jdk`）
 - MySQL 8.0
 - Python 3.10+（用于 FastAPI 推理服务）
+- MinIO（二进制方式，可选，用于正式环境图片存储）
 
 ---
 
@@ -45,6 +46,11 @@ JWT_SECRET=your_jwt_secret_here
 FILE_UPLOAD_PATH=/var/bugsight/uploads
 FILE_ACCESS_URL=http://your-server-ip/api/v1/files
 INFERENCE_URL=http://127.0.0.1:8000
+STORAGE_PROVIDER=minio
+STORAGE_MINIO_ENDPOINT=http://127.0.0.1:9000
+STORAGE_MINIO_ACCESS_KEY=your_minio_access_key
+STORAGE_MINIO_SECRET_KEY=your_minio_secret_key
+STORAGE_MINIO_BUCKET=bugsight-images
 ```
 
 ### 4. 注册 systemd 服务
@@ -82,21 +88,61 @@ tail -f /var/log/bugsight/app.log
 
 ---
 
-## 四、FastAPI 推理服务启动
-```bash
-cd /opt/bugsight/source/scripts/ml
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
+## 四、MinIO 图片存储（推荐正式环境）
 
-MODEL_PATH=/opt/bugsight/source/scripts/data/models/resnet50_ip102_balanced/resnet50_ip102_balanced.onnx \
-LABELS_PATH=/opt/bugsight/source/scripts/data/models/resnet50_ip102_balanced/labels.json \
-uvicorn predict_api:app --host 127.0.0.1 --port 8000 --workers 2
+```bash
+sudo bash scripts/bootstrap_minio_service.sh
+```
+
+首次执行会生成 `/etc/minio/bugsight-minio.env` 模板，请填好 `MINIO_ROOT_USER / MINIO_ROOT_PASSWORD` 后重跑。
+
+建议创建私有桶：
+
+```bash
+mc alias set bugsight http://127.0.0.1:9000 MINIO_ACCESS_KEY MINIO_SECRET_KEY
+mc mb bugsight/bugsight-images
 ```
 
 ---
 
-## 五、Nginx 配置
+## 五、FastAPI 推理服务启动（当前主路线：25 类正样本优化）
+```bash
+sudo bash scripts/bootstrap_inference_service.sh
+```
+
+如果你已经训练完当前主方案模型，把 `/opt/bugsight/inference.env` 设成：
+
+```bash
+MODEL_PATH=/opt/bugsight/source/scripts/data/models/resnet50_ip102_positive/resnet50_ip102_positive.onnx
+LABELS_PATH=/opt/bugsight/source/scripts/data/models/resnet50_ip102_positive/labels.json
+```
+
+---
+
+## 六、AutoDL 正样本优化训练
+
+直接在 AutoDL 上执行：
+
+```bash
+cd /root/autodl-tmp/bugsight-train
+bash scripts/ml/autodl_train_positive_only.sh
+```
+
+默认会：
+- 使用现有 25 类平衡数据集
+- 训练 `ResNet50`
+- 导出 `resnet50_ip102_positive.onnx`
+- 写出带 `reject_threshold / margin_threshold` 的 `labels.json`
+
+如果你以后想切回开放集方案，再使用：
+
+```bash
+bash scripts/ml/autodl_train_open_set.sh /root/autodl-tmp/bugsight-train/data/negative_non_insect
+```
+
+---
+
+## 七、Nginx 配置
 ```nginx
 server {
     listen 80;

@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -38,32 +39,38 @@ public class RecognitionService {
                                         String locationName, BigDecimal lat, BigDecimal lng) {
         // 1. 先调用推理服务，避免 transferTo 后临时上传文件被移动导致二次读取失败
         InferenceService.InferenceResult inferResult = inferenceService.predict(file);
+        boolean isUnknown = Boolean.TRUE.equals(inferResult.getIsUnknown()) || inferResult.getTop1() == null;
+        List<InferenceService.InferenceItem> candidates = inferResult.getTop3() != null ? inferResult.getTop3() : Collections.emptyList();
 
         // 2. 保存图片
         String imageUrl = fileService.saveImage(file);
 
         // 3. 构建 top3 JSON
-        List<Map<String, Object>> top3List = inferResult.getTop3().stream().map(item -> {
-            InsectInfo insect = insectCatalogService.getOrCreate(item.getClassIndex());
-            return Map.<String, Object>of(
-                    "insectId", item.getClassIndex(),
-                    "nameCn", insect != null ? insect.getSpeciesNameCn() : "未收录",
-                    "confidence", item.getConfidence()
-            );
-        }).collect(Collectors.toList());
+        List<Map<String, Object>> top3List = isUnknown
+                ? Collections.emptyList()
+                : candidates.stream().map(item -> {
+                    InsectInfo insect = insectCatalogService.getOrCreate(item.getClassIndex());
+                    return Map.<String, Object>of(
+                            "insectId", item.getClassIndex(),
+                            "nameCn", insect != null ? insect.getSpeciesNameCn() : "未收录",
+                            "confidence", item.getConfidence()
+                    );
+                }).collect(Collectors.toList());
 
         // 4. 更新昆虫识别次数
-        insectMapper.update(null, new com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper<InsectInfo>()
-                .eq(InsectInfo::getId, inferResult.getTop1().getClassIndex())
-                .setSql("recognition_count = recognition_count + 1"));
+        if (!isUnknown) {
+            insectMapper.update(null, new com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper<InsectInfo>()
+                    .eq(InsectInfo::getId, inferResult.getTop1().getClassIndex())
+                    .setSql("recognition_count = recognition_count + 1"));
+        }
 
         // 5. 保存历史记录
         RecognitionHistory history = new RecognitionHistory();
         history.setUserId(userId);
         history.setImageUrl(imageUrl);
         history.setImageOriginalName(file.getOriginalFilename());
-        history.setTop1InsectId(inferResult.getTop1().getClassIndex());
-        history.setTop1Confidence(BigDecimal.valueOf(inferResult.getTop1().getConfidence()));
+        history.setTop1InsectId(isUnknown ? null : inferResult.getTop1().getClassIndex());
+        history.setTop1Confidence(resolveConfidence(inferResult));
         history.setTop3Result(JSONUtil.toJsonStr(top3List));
         history.setLocationName(locationName);
         history.setLatitude(lat);
@@ -138,9 +145,10 @@ public class RecognitionService {
     }
 
     public com.bugsight.dto.response.RecognitionResponse toRecognitionResponse(RecognitionHistory history) {
+        boolean isUnknown = history.getTop1InsectId() == null;
         InsectInfo top1 = history.getTop1InsectId() != null ? insectCatalogService.getOrCreate(history.getTop1InsectId()) : null;
         List<com.bugsight.dto.response.RecognitionResponse.SimilarSpecies> similar = new ArrayList<>();
-        if (history.getTop3Result() != null && JSONUtil.isTypeJSON(history.getTop3Result())) {
+        if (!isUnknown && history.getTop3Result() != null && JSONUtil.isTypeJSON(history.getTop3Result())) {
             JSONArray top3 = JSONUtil.parseArray(history.getTop3Result());
             similar = top3.stream()
                     .map(item -> (JSONObject) item)
@@ -154,7 +162,8 @@ public class RecognitionService {
 
         return com.bugsight.dto.response.RecognitionResponse.builder()
                 .recognitionId(history.getId())
-                .species(com.bugsight.dto.response.RecognitionResponse.Species.builder()
+                .isUnknown(isUnknown)
+                .species(isUnknown ? null : com.bugsight.dto.response.RecognitionResponse.Species.builder()
                         .id(history.getTop1InsectId())
                         .name(top1 != null ? top1.getSpeciesNameCn() : "未知")
                         .latinName(top1 != null ? top1.getSpeciesNameEn() : "Unknown")
@@ -166,6 +175,16 @@ public class RecognitionService {
                 .location(history.getLocationName())
                 .capturedAt(history.getCreatedAt())
                 .build();
+    }
+
+    private BigDecimal resolveConfidence(InferenceService.InferenceResult inferResult) {
+        if (inferResult.getTop1() != null && inferResult.getTop1().getConfidence() != null) {
+            return BigDecimal.valueOf(inferResult.getTop1().getConfidence());
+        }
+        if (inferResult.getTop3() != null && !inferResult.getTop3().isEmpty() && inferResult.getTop3().get(0).getConfidence() != null) {
+            return BigDecimal.valueOf(inferResult.getTop3().get(0).getConfidence());
+        }
+        return BigDecimal.ZERO;
     }
 
 }

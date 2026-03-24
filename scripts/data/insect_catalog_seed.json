@@ -1,0 +1,961 @@
+[
+  {
+    "class_id": 0,
+    "model_label": "rice leaf roller",
+    "taxonomic_rank": "species",
+    "species_name_cn": "稻纵卷叶螟",
+    "species_name_en": "Cnaphalocrocis medinalis",
+    "order_name": "Lepidoptera",
+    "family_name": "Crambidae",
+    "genus_name": "Cnaphalocrocis",
+    "body_length": "成虫体长约 7-10 mm，翅展约 15-18 mm",
+    "distribution": "广泛分布于东亚、东南亚和南亚稻区，在温暖潮湿的水稻种植区最常见。",
+    "active_season": "水稻生长季高发，通常为 5-10 月，南方可延长。",
+    "protection_level": "未评估",
+    "harm_level": 2,
+    "description": "稻纵卷叶螟是亚洲稻区常见鳞翅目害虫，幼虫会把稻叶卷成筒状并取食叶肉，降低叶片光合能力，重发时可显著影响产量。",
+    "morphology": "成虫体色黄褐至淡褐，前翅具波纹状斑纹；幼虫细长淡绿，受惊后会在卷叶内快速躲藏。",
+    "habits": "夜间成虫趋光并产卵于叶面，幼虫孵化后卷叶取食；田间高温高湿、氮肥偏多时更易暴发。",
+    "cover_image_url": "/wiki-covers/0.jpg",
+    "source_refs": [
+      {
+        "authority": "EPPO Global Database",
+        "title": "Cnaphalocrocis medinalis"
+      },
+      {
+        "authority": "JICA / Cambodia Rice Insect Pests and Their Management Guidebook",
+        "title": "Rice leaf folder"
+      }
+    ],
+    "order_name_cn": "鳞翅目",
+    "family_name_cn": "螟蛾科",
+    "genus_name_cn": "纵卷叶螟属",
+    "body_length_en": "Adults are about 7-10 mm long with a wingspan of roughly 15-18 mm.",
+    "distribution_en": "Widely distributed across rice-growing regions of East, Southeast, and South Asia, especially in warm and humid paddies.",
+    "active_season_en": "Most active during the rice growing season, usually from May to October, and longer in southern areas.",
+    "protection_level_en": "Not evaluated",
+    "description_en": "The rice leaf roller is a common lepidopteran rice pest in Asia. Larvae roll rice leaves into tubes and scrape leaf tissue, reducing photosynthetic area and potentially lowering yield under heavy infestation.",
+    "morphology_en": "Adults are yellowish brown with wavy markings on the forewings. Larvae are slender and greenish, and quickly retreat into rolled leaves when disturbed.",
+    "habits_en": "Adults are nocturnal and attracted to light. Eggs are laid on leaves, and newly hatched larvae begin feeding inside rolled leaves. Hot, humid fields with excess nitrogen often favor outbreaks."
+  },
+  {
+    "class_id": 3,
+    "model_label": "asiatic rice borer",
+    "taxonomic_rank": "species",
+    "species_name_cn": "二化螟",
+    "species_name_en": "Chilo suppressalis",
+    "order_name": "Lepidoptera",
+    "family_name": "Crambidae",
+    "genus_name": "Chilo",
+    "body_length": "老熟幼虫约 20-30 mm，成虫体长约 10-15 mm",
+    "distribution": "广泛分布于东亚、东南亚及其他温带至亚热带稻作区。",
+    "active_season": "多在 4-10 月危害水稻，南方一年多代。",
+    "protection_level": "未评估",
+    "harm_level": 2,
+    "description": "二化螟是水稻重要钻蛀性害虫，幼虫蛀入叶鞘和茎秆，造成分蘖期枯心、抽穗期白穗。",
+    "morphology": "成虫淡黄褐色，前翅较狭长；幼虫乳白至淡黄色，头壳褐色，身体较光滑。",
+    "habits": "雌蛾多在叶片产卵，初孵幼虫取食叶鞘后迅速钻蛀茎秆；高密植和连作稻田常加重发生。",
+    "cover_image_url": "/wiki-covers/3.jpg",
+    "source_refs": [
+      {
+        "authority": "EPPO Global Database",
+        "title": "Chilo suppressalis"
+      },
+      {
+        "authority": "JICA / Rice pest guidebook",
+        "title": "Rice stem borer complex"
+      }
+    ],
+    "order_name_cn": "鳞翅目",
+    "family_name_cn": "螟蛾科",
+    "genus_name_cn": "稻螟属",
+    "body_length_en": "Mature larvae are about 20-30 mm long; adults are roughly 10-15 mm in body length.",
+    "distribution_en": "Widely distributed in East and Southeast Asia and other temperate to subtropical rice-growing areas.",
+    "active_season_en": "Usually damages rice from April to October, with multiple generations in southern regions.",
+    "protection_level_en": "Not evaluated",
+    "description_en": "The Asiatic rice borer is a major stem-boring pest of rice. Larvae tunnel into leaf sheaths and stems, causing dead hearts during tillering and white heads at heading stage.",
+    "morphology_en": "Adults are pale yellowish brown with narrow forewings. Larvae are creamy white to pale yellow with a brown head capsule and a smooth body.",
+    "habits_en": "Females lay eggs on rice leaves. Young larvae feed briefly on leaf sheaths before boring into stems. Dense planting and continuous rice cultivation often increase field risk."
+  },
+  {
+    "class_id": 8,
+    "model_label": "white backed plant hopper",
+    "taxonomic_rank": "species",
+    "species_name_cn": "白背飞虱",
+    "species_name_en": "Sogatella furcifera",
+    "order_name": "Hemiptera",
+    "family_name": "Delphacidae",
+    "genus_name": "Sogatella",
+    "body_length": "成虫体长约 3.5-4.5 mm",
+    "distribution": "广布于东亚、东南亚和南亚稻区，可随季风迁飞。",
+    "active_season": "水稻分蘖至灌浆期常见，通常 5-10 月高发。",
+    "protection_level": "未评估",
+    "harm_level": 2,
+    "description": "白背飞虱为水稻刺吸式害虫，群集吸食汁液可致叶片黄化、植株衰弱，严重时出现“虱烧”。",
+    "morphology": "成虫体形纺锤状，背部中轴常见白色条纹；若虫灰白或淡褐，善于在稻株基部聚集。",
+    "habits": "以若虫和成虫吸食稻株汁液，繁殖快、迁飞能力强，在高氮密植田块更易形成高密度种群。",
+    "cover_image_url": "/wiki-covers/8.jpg",
+    "source_refs": [
+      {
+        "authority": "EPPO Global Database",
+        "title": "Sogatella furcifera"
+      },
+      {
+        "authority": "IRRI Rice Knowledge Bank",
+        "title": "Whitebacked planthopper"
+      }
+    ],
+    "order_name_cn": "半翅目",
+    "family_name_cn": "飞虱科",
+    "genus_name_cn": "白背飞虱属",
+    "body_length_en": "Adults are about 3.5-4.5 mm long.",
+    "distribution_en": "Widely found in East, Southeast, and South Asian rice ecosystems and capable of seasonal migration.",
+    "active_season_en": "Common from tillering to grain filling, usually peaking from May to October.",
+    "protection_level_en": "Not evaluated",
+    "description_en": "The white-backed planthopper is a sap-sucking rice pest. Heavy feeding can yellow plants, weaken rice stands, and lead to hopperburn under severe infestations.",
+    "morphology_en": "Adults are spindle-shaped and usually show a pale whitish stripe along the back. Nymphs are grayish white to pale brown and cluster near the plant base.",
+    "habits_en": "Both nymphs and adults feed on plant sap. Populations build quickly and migrate well, especially in dense rice fields with high nitrogen input."
+  },
+  {
+    "class_id": 10,
+    "model_label": "rice water weevil",
+    "taxonomic_rank": "species",
+    "species_name_cn": "稻水象甲",
+    "species_name_en": "Lissorhoptrus oryzophilus",
+    "order_name": "Coleoptera",
+    "family_name": "Curculionidae",
+    "genus_name": "Lissorhoptrus",
+    "body_length": "成虫体长约 2.5-4.0 mm",
+    "distribution": "原产北美，现已扩散至亚洲部分稻区，是多地检疫关注对象。",
+    "active_season": "秧苗返青至分蘖初期危害明显，春末夏初较常见。",
+    "protection_level": "未评估",
+    "harm_level": 2,
+    "description": "稻水象甲是水稻根部害虫，成虫啃食叶片形成长条缺刻，幼虫在水下取食根系，导致植株生长受抑。",
+    "morphology": "成虫灰褐色，吻部明显，体表覆盖鳞片；幼虫乳白、无足，主要生活于根际泥水中。",
+    "habits": "越冬成虫迁入稻田后取食并产卵于叶鞘组织，幼虫孵化后入土危害根系，长期淹水田受害更重。",
+    "cover_image_url": "/wiki-covers/10.jpg",
+    "source_refs": [
+      {
+        "authority": "EPPO Global Database",
+        "title": "Lissorhoptrus oryzophilus"
+      },
+      {
+        "authority": "LSU AgCenter",
+        "title": "Rice Water Weevil in Louisiana rice"
+      }
+    ],
+    "order_name_cn": "鞘翅目",
+    "family_name_cn": "象甲科",
+    "genus_name_cn": "稻水象甲属",
+    "body_length_en": "Adults are about 2.5-4.0 mm long.",
+    "distribution_en": "Native to North America but now introduced into several Asian rice-growing regions and treated as a quarantine concern in many areas.",
+    "active_season_en": "Most damaging from seedling establishment to early tillering, especially in late spring and early summer.",
+    "protection_level_en": "Not evaluated",
+    "description_en": "The rice water weevil is a root-feeding pest of rice. Adults notch leaves, while larvae feed on roots below the waterline and stunt plant growth.",
+    "morphology_en": "Adults are grayish brown with a distinct snout and a scaly body surface. Larvae are creamy white, legless, and live in muddy root zones.",
+    "habits_en": "Overwintered adults invade paddies, feed, and lay eggs in leaf sheaths. Larvae then move into the soil and attack roots, with flooded fields often suffering more injury."
+  },
+  {
+    "class_id": 14,
+    "model_label": "grub",
+    "taxonomic_rank": "larval-group",
+    "species_name_cn": "蛴螬",
+    "species_name_en": "Scarabaeidae larvae",
+    "order_name": "Coleoptera",
+    "family_name": "Scarabaeidae",
+    "genus_name": "",
+    "body_length": "幼虫体长通常 10-40 mm，随种类与龄期差异较大",
+    "distribution": "广泛分布于农田、草地和苗圃土壤环境中。",
+    "active_season": "春夏秋均可在土中见到，温暖季节取食最活跃。",
+    "protection_level": "未评估",
+    "harm_level": 2,
+    "description": "“蛴螬”是金龟子类幼虫的统称，主要生活在土壤中咬食根系、地下茎和萌芽，对幼苗成活影响明显。",
+    "morphology": "体形弯曲呈 C 字形，乳白色，头部褐色，胸足发达，腹部肥厚。",
+    "habits": "昼伏土中，夜间或阴湿环境中活动增强；常在有机质丰富、杂草多的地块聚集。",
+    "cover_image_url": "/wiki-covers/14.jpg",
+    "source_refs": [
+      {
+        "authority": "University of Minnesota Extension",
+        "title": "White grubs"
+      },
+      {
+        "authority": "UC IPM",
+        "title": "White grubs"
+      }
+    ],
+    "order_name_cn": "鞘翅目",
+    "family_name_cn": "金龟子科",
+    "genus_name_cn": "",
+    "body_length_en": "Larvae usually range from 10-40 mm depending on species and instar.",
+    "distribution_en": "Common in agricultural soils, grasslands, nurseries, and organically rich fields.",
+    "active_season_en": "Present in soil through spring, summer, and autumn, with highest feeding activity in warm seasons.",
+    "protection_level_en": "Not evaluated",
+    "description_en": "\"Grub\" here refers to scarab beetle larvae as a pest group. They live in soil and chew roots, underground stems, and germinating tissues, often reducing seedling establishment.",
+    "morphology_en": "Typical larvae are creamy white and C-shaped, with a brown head capsule, well-developed thoracic legs, and a swollen abdomen.",
+    "habits_en": "They remain in soil by day and become more active in moist conditions. Populations often build in weedy or organic-rich plots."
+  },
+  {
+    "class_id": 15,
+    "model_label": "mole cricket",
+    "taxonomic_rank": "family-group",
+    "species_name_cn": "蝼蛄",
+    "species_name_en": "Gryllotalpidae",
+    "order_name": "Orthoptera",
+    "family_name": "Gryllotalpidae",
+    "genus_name": "",
+    "body_length": "成虫多为 30-50 mm，前足强壮适于掘土",
+    "distribution": "广布于温暖地区农田、草坪和苗圃土壤中。",
+    "active_season": "春夏季最活跃，夜间活动明显。",
+    "protection_level": "未评估",
+    "harm_level": 2,
+    "description": "蝼蛄为典型地下害虫，能掘隧道并切断根系、幼茎，导致苗木倒伏、缺苗断垄。",
+    "morphology": "身体圆筒形，前足铲状，适于挖掘；体色褐黄至暗褐，触角短。",
+    "habits": "多栖息于潮湿疏松土壤，夜间取食和鸣叫，成若虫均可危害地下部组织。",
+    "cover_image_url": "/wiki-covers/15.jpg",
+    "source_refs": [
+      {
+        "authority": "UF/IFAS EDIS",
+        "title": "Mole crickets"
+      },
+      {
+        "authority": "UF Featured Creatures",
+        "title": "Mole crickets"
+      }
+    ],
+    "order_name_cn": "直翅目",
+    "family_name_cn": "蝼蛄科",
+    "genus_name_cn": "",
+    "body_length_en": "Adults commonly measure 30-50 mm and have heavily modified digging forelegs.",
+    "distribution_en": "Widely distributed in warm regions, especially in farmland, turf, and nursery soils.",
+    "active_season_en": "Most active in spring and summer, especially at night.",
+    "protection_level_en": "Not evaluated",
+    "description_en": "Mole crickets are subterranean orthopteran pests that tunnel through soil and cut roots and young stems, causing seedling loss and lodging.",
+    "morphology_en": "They have a cylindrical body, broad shovel-like forelegs for digging, and yellow-brown to dark brown coloration.",
+    "habits_en": "They favor moist, loose soils and feed underground. Both nymphs and adults can injure belowground plant parts, with nocturnal activity being especially obvious."
+  },
+  {
+    "class_id": 16,
+    "model_label": "wireworm",
+    "taxonomic_rank": "larval-group",
+    "species_name_cn": "金针虫",
+    "species_name_en": "Elateridae larvae",
+    "order_name": "Coleoptera",
+    "family_name": "Elateridae",
+    "genus_name": "",
+    "body_length": "幼虫通常 10-25 mm，体细长坚硬",
+    "distribution": "广泛分布于旱地、玉米地、马铃薯地和苗床土壤。",
+    "active_season": "春播后至夏季危害明显，土壤湿凉时更活跃。",
+    "protection_level": "未评估",
+    "harm_level": 2,
+    "description": "金针虫是叩甲幼虫的统称，主要危害种子、块根和幼苗地下茎，常造成缺苗和烂种。",
+    "morphology": "幼虫黄褐色至棕黄色，细长硬实，体节明显，外表光滑似金属丝。",
+    "habits": "长期栖息土中，喜阴湿环境；对新播种子和幼根取食性强，轮作和整地不足时更易积累。",
+    "cover_image_url": "/wiki-covers/16.jpg",
+    "source_refs": [
+      {
+        "authority": "UC IPM",
+        "title": "Wireworms"
+      },
+      {
+        "authority": "University Extension references",
+        "title": "Wireworm management factsheets"
+      }
+    ],
+    "order_name_cn": "鞘翅目",
+    "family_name_cn": "叩甲科",
+    "genus_name_cn": "",
+    "body_length_en": "Larvae usually range from 10-25 mm and have a narrow, hard body.",
+    "distribution_en": "Widely distributed in dryland crops, maize, potato fields, and seedbeds.",
+    "active_season_en": "Damage is most common after spring planting and in cool, moist soil conditions.",
+    "protection_level_en": "Not evaluated",
+    "description_en": "\"Wireworm\" refers to click beetle larvae as a pest group. They attack seeds, roots, and underground stems, often causing poor emergence and stand loss.",
+    "morphology_en": "Larvae are yellow to brownish yellow, slender, smooth, and hard-bodied, giving them a wire-like appearance.",
+    "habits_en": "They spend most of their life in the soil and favor shady, moist conditions. Newly planted seeds and young roots are especially vulnerable."
+  },
+  {
+    "class_id": 18,
+    "model_label": "black cutworm",
+    "taxonomic_rank": "species",
+    "species_name_cn": "黑地老虎",
+    "species_name_en": "Agrotis ipsilon",
+    "order_name": "Lepidoptera",
+    "family_name": "Noctuidae",
+    "genus_name": "Agrotis",
+    "body_length": "老熟幼虫约 35-50 mm，成虫翅展约 40-55 mm",
+    "distribution": "世界多地有分布，在玉米、蔬菜和多种旱作物区常见。",
+    "active_season": "春末夏初幼苗期危害最重，夜间取食明显。",
+    "protection_level": "未评估",
+    "harm_level": 2,
+    "description": "黑地老虎是典型切根性夜蛾害虫，低龄幼虫取食叶片，高龄幼虫常在地表附近咬断幼苗。",
+    "morphology": "幼虫灰黑或褐黑，体表油亮；成虫前翅深褐并具肾纹和环纹。",
+    "habits": "幼虫昼伏夜出，白天躲藏于土缝或残茬下；杂草多、前茬覆盖重的地块往往虫量更高。",
+    "cover_image_url": "/wiki-covers/18.jpg",
+    "source_refs": [
+      {
+        "authority": "EPPO Global Database",
+        "title": "Agrotis ipsilon"
+      },
+      {
+        "authority": "University of Minnesota Extension",
+        "title": "Black cutworm in corn"
+      }
+    ],
+    "order_name_cn": "鳞翅目",
+    "family_name_cn": "夜蛾科",
+    "genus_name_cn": "地老虎属",
+    "body_length_en": "Mature larvae are about 35-50 mm long, and adults have a wingspan of roughly 40-55 mm.",
+    "distribution_en": "Distributed across many parts of the world and common in maize, vegetables, and other upland crops.",
+    "active_season_en": "Most damaging in late spring and early summer during the seedling stage, with strong nocturnal feeding.",
+    "protection_level_en": "Not evaluated",
+    "description_en": "The black cutworm is a typical cutworm pest. Young larvae skeletonize leaves, while older larvae cut seedlings near the soil surface.",
+    "morphology_en": "Larvae are gray-black to dark brown and appear greasy. Adults are dark brown with characteristic orbicular and kidney-shaped wing markings.",
+    "habits_en": "Larvae hide in cracks or crop residue during the day and feed at night. Fields with abundant weeds or residue often face greater risk."
+  },
+  {
+    "class_id": 22,
+    "model_label": "corn borer",
+    "taxonomic_rank": "species",
+    "species_name_cn": "玉米螟",
+    "species_name_en": "Ostrinia furnacalis",
+    "order_name": "Lepidoptera",
+    "family_name": "Pyralidae",
+    "genus_name": "Ostrinia",
+    "body_length": "老熟幼虫约 20-30 mm，成虫翅展约 20-34 mm",
+    "distribution": "广布于东亚和东南亚玉米产区。",
+    "active_season": "6-9 月玉米拔节至灌浆期危害显著，多代区持续时间更长。",
+    "protection_level": "未评估",
+    "harm_level": 2,
+    "description": "玉米螟是玉米钻蛀性害虫，幼虫可取食心叶、穗轴和茎秆，导致折秆、秃尖和籽粒减产。",
+    "morphology": "成虫黄褐色，前翅具波状纹；幼虫淡黄至肉红色，背线较明显。",
+    "habits": "卵块多产于叶背，幼虫初期取食心叶后钻蛀茎秆和果穗；高温季节繁殖较快。",
+    "cover_image_url": "/wiki-covers/22.jpg",
+    "source_refs": [
+      {
+        "authority": "EPPO Global Database",
+        "title": "Ostrinia furnacalis"
+      },
+      {
+        "authority": "Agricultural extension references",
+        "title": "Asian corn borer"
+      }
+    ],
+    "order_name_cn": "鳞翅目",
+    "family_name_cn": "螟蛾科",
+    "genus_name_cn": "野螟属",
+    "body_length_en": "Mature larvae are about 20-30 mm long and adults have a wingspan of roughly 20-34 mm.",
+    "distribution_en": "Widely distributed in East and Southeast Asian maize-growing regions.",
+    "active_season_en": "Most serious from June to September during stem elongation through grain filling, and longer in multi-generation areas.",
+    "protection_level_en": "Not evaluated",
+    "description_en": "The Asian corn borer is a major boring pest of maize. Larvae feed in whorls and tunnel into stalks and ears, causing breakage, poor ear fill, and yield loss.",
+    "morphology_en": "Adults are yellowish brown with wavy forewing lines. Larvae are pale yellow to pinkish with a visible dorsal line.",
+    "habits_en": "Egg masses are laid on leaf undersides. Young larvae feed in whorls before boring into stalks and ears. Warm weather supports rapid population growth."
+  },
+  {
+    "class_id": 23,
+    "model_label": "army worm",
+    "taxonomic_rank": "species",
+    "species_name_cn": "粘虫",
+    "species_name_en": "Mythimna separata",
+    "order_name": "Lepidoptera",
+    "family_name": "Noctuidae",
+    "genus_name": "Mythimna",
+    "body_length": "老熟幼虫约 30-40 mm，成虫翅展约 35-45 mm",
+    "distribution": "广泛分布于东亚和南亚的麦类、玉米及禾本科作物区。",
+    "active_season": "春夏秋均可发生，迁飞性强，常在梅雨至盛夏形成高峰。",
+    "protection_level": "未评估",
+    "harm_level": 2,
+    "description": "粘虫是禾本科作物重要暴食性害虫，大发生时幼虫可成群迁移取食，短时间内造成严重失叶。",
+    "morphology": "幼虫体色多变，常具纵纹；成虫前翅灰褐，后翅较浅。",
+    "habits": "成虫迁飞能力强，卵产于叶片，幼虫昼夜均可取食，高龄时常呈群集和转移危害特点。",
+    "cover_image_url": "/wiki-covers/23.jpg",
+    "source_refs": [
+      {
+        "authority": "EPPO Global Database",
+        "title": "Mythimna separata"
+      },
+      {
+        "authority": "Plant protection references",
+        "title": "Oriental armyworm"
+      }
+    ],
+    "order_name_cn": "鳞翅目",
+    "family_name_cn": "夜蛾科",
+    "genus_name_cn": "粘虫属",
+    "body_length_en": "Mature larvae are about 30-40 mm long and adults have a wingspan of roughly 35-45 mm.",
+    "distribution_en": "Widely distributed in East and South Asia in wheat, maize, and other grass crop systems.",
+    "active_season_en": "Can occur in spring, summer, and autumn, with migration peaks often appearing from rainy season to midsummer.",
+    "protection_level_en": "Not evaluated",
+    "description_en": "The oriental armyworm is a serious foliar pest of grasses and cereals. During outbreaks, larvae feed gregariously and can move in waves across fields.",
+    "morphology_en": "Larval coloration varies, but longitudinal stripes are usually visible. Adults are gray-brown with lighter hindwings.",
+    "habits_en": "Adults migrate well and lay eggs on host leaves. Larvae feed heavily, and older larvae may move collectively when food becomes scarce."
+  },
+  {
+    "class_id": 24,
+    "model_label": "aphids",
+    "taxonomic_rank": "superfamily-group",
+    "species_name_cn": "蚜虫",
+    "species_name_en": "Aphidoidea",
+    "order_name": "Hemiptera",
+    "family_name": "Aphididae",
+    "genus_name": "",
+    "body_length": "成虫一般 1-4 mm",
+    "distribution": "广布于全球农田、果园和园艺系统中。",
+    "active_season": "温暖季节繁殖最快，设施栽培中可全年发生。",
+    "protection_level": "未评估",
+    "harm_level": 2,
+    "description": "蚜虫是典型刺吸式害虫，可直接吸食植物汁液并分泌蜜露，还常传播多种植物病毒。",
+    "morphology": "个体柔软，梨形，常见无翅型和有翅型；腹末有一对角状管。",
+    "habits": "许多种类可孤雌生殖并快速扩增，在嫩梢、嫩叶和花器上群集取食，通风差和氮肥高时更易暴发。",
+    "cover_image_url": "/wiki-covers/24.jpg",
+    "source_refs": [
+      {
+        "authority": "UC IPM",
+        "title": "Aphids"
+      }
+    ],
+    "order_name_cn": "半翅目",
+    "family_name_cn": "蚜科",
+    "genus_name_cn": "",
+    "body_length_en": "Adults are generally 1-4 mm long.",
+    "distribution_en": "Widely distributed in croplands, orchards, greenhouses, and ornamental plant systems worldwide.",
+    "active_season_en": "Population growth is fastest in warm seasons, and infestations may persist year-round in protected cultivation.",
+    "protection_level_en": "Not evaluated",
+    "description_en": "Aphids are typical sap-sucking pests. They directly remove plant sap, excrete honeydew, and frequently transmit plant viruses.",
+    "morphology_en": "Individuals are soft-bodied and pear-shaped, with winged and wingless forms often present. A pair of cornicles is usually visible near the abdomen tip.",
+    "habits_en": "Many species reproduce rapidly by parthenogenesis and cluster on tender shoots, leaves, and flowers. High nitrogen input and poor airflow often promote outbreaks."
+  },
+  {
+    "class_id": 38,
+    "model_label": "cabbage army worm",
+    "taxonomic_rank": "species",
+    "species_name_cn": "甘蓝夜蛾",
+    "species_name_en": "Mamestra brassicae",
+    "order_name": "Lepidoptera",
+    "family_name": "Noctuidae",
+    "genus_name": "Mamestra",
+    "body_length": "幼虫约 30-40 mm，成虫翅展约 40-50 mm",
+    "distribution": "分布于欧洲、亚洲等温带蔬菜种植区，在十字花科作物田较常见。",
+    "active_season": "春末至秋季发生，夏秋季蔬菜田危害较重。",
+    "protection_level": "未评估",
+    "harm_level": 2,
+    "description": "甘蓝夜蛾主要危害甘蓝、白菜等十字花科蔬菜，幼虫啃食叶片并可钻入叶球内部。",
+    "morphology": "幼虫体色绿褐至灰褐，背线较明显；成虫前翅灰褐并有较清楚的环纹和肾纹。",
+    "habits": "卵多产于叶背，幼虫夜间取食，白天伏于叶丛或土表缝隙；连作菜地更易积累虫源。",
+    "cover_image_url": "/wiki-covers/38.jpg",
+    "source_refs": [
+      {
+        "authority": "EPPO Global Database",
+        "title": "Mamestra brassicae"
+      },
+      {
+        "authority": "Vegetable pest references",
+        "title": "Cabbage armyworm"
+      }
+    ],
+    "order_name_cn": "鳞翅目",
+    "family_name_cn": "夜蛾科",
+    "genus_name_cn": "甘蓝夜蛾属",
+    "body_length_en": "Larvae are about 30-40 mm long and adults have a wingspan of roughly 40-50 mm.",
+    "distribution_en": "Distributed across temperate vegetable-growing regions of Europe and Asia, especially in brassica fields.",
+    "active_season_en": "Occurs from late spring to autumn, with summer and autumn damage often being more serious in vegetable crops.",
+    "protection_level_en": "Not evaluated",
+    "description_en": "The cabbage armyworm mainly damages cabbage, Chinese cabbage, and other brassicas. Larvae chew leaves and may bore into heading tissues.",
+    "morphology_en": "Larvae vary from greenish brown to grayish brown and usually show a clear dorsal line. Adults are gray-brown with obvious orbicular and kidney-shaped forewing marks.",
+    "habits_en": "Eggs are usually laid on leaf undersides. Larvae feed at night and hide in foliage or soil cracks by day. Continuous vegetable production often increases local pressure."
+  },
+  {
+    "class_id": 39,
+    "model_label": "beet army worm",
+    "taxonomic_rank": "species",
+    "species_name_cn": "甜菜夜蛾",
+    "species_name_en": "Spodoptera exigua",
+    "order_name": "Lepidoptera",
+    "family_name": "Noctuidae",
+    "genus_name": "Spodoptera",
+    "body_length": "幼虫约 25-30 mm，成虫翅展约 25-38 mm",
+    "distribution": "全球温暖地区广泛分布，是蔬菜和经济作物重要害虫。",
+    "active_season": "高温季节世代重叠明显，露地多在 5-10 月发生。",
+    "protection_level": "未评估",
+    "harm_level": 2,
+    "description": "甜菜夜蛾食性极杂，可危害葱蒜、豆类、茄果和棉花等作物，常造成叶片穿孔和严重失叶。",
+    "morphology": "幼虫颜色多变，体侧有明显浅色线；成虫较小，前翅灰褐并带浅色肾纹区。",
+    "habits": "雌蛾常成块产卵并覆毛，幼虫低龄群集、高龄分散取食，抗药性发展风险较高。",
+    "cover_image_url": "/wiki-covers/39.jpg",
+    "source_refs": [
+      {
+        "authority": "UC IPM",
+        "title": "Beet armyworm"
+      },
+      {
+        "authority": "EPPO Global Database",
+        "title": "Spodoptera exigua"
+      }
+    ],
+    "order_name_cn": "鳞翅目",
+    "family_name_cn": "夜蛾科",
+    "genus_name_cn": "斜纹夜蛾属",
+    "body_length_en": "Larvae are about 25-30 mm long and adults have a wingspan of roughly 25-38 mm.",
+    "distribution_en": "Widely distributed in warm regions worldwide and important in vegetables and field crops.",
+    "active_season_en": "Generations overlap in hot seasons and field infestations are common from May to October.",
+    "protection_level_en": "Not evaluated",
+    "description_en": "The beet armyworm is highly polyphagous and damages onions, beans, solanaceous crops, cotton, and many others, often causing defoliation and shot-hole injury.",
+    "morphology_en": "Larvae vary in color but usually show a pale lateral stripe. Adults are relatively small and gray-brown with a lighter kidney-shaped wing area.",
+    "habits_en": "Females lay egg masses covered with scales. Young larvae feed gregariously and older larvae disperse. Resistance development is a common management concern."
+  },
+  {
+    "class_id": 45,
+    "model_label": "flax budworm",
+    "taxonomic_rank": "species",
+    "species_name_cn": "亚麻芽虫",
+    "species_name_en": "Heliothis viriplaca",
+    "order_name": "Lepidoptera",
+    "family_name": "Noctuidae",
+    "genus_name": "Heliothis",
+    "body_length": "幼虫约 25-35 mm，成虫翅展约 30-38 mm",
+    "distribution": "见于欧洲和亚洲部分温带地区，可危害豆科、亚麻等作物。",
+    "active_season": "春末至夏季较常见，花蕾和嫩荚阶段危害明显。",
+    "protection_level": "未评估",
+    "harm_level": 2,
+    "description": "亚麻芽虫主要危害花蕾、嫩荚和幼嫩组织，发生后可造成落蕾、落花和结实不良。",
+    "morphology": "幼虫体色绿色、褐色或带斑纹，变化较大；成虫前翅黄褐至橄榄褐色。",
+    "habits": "幼虫偏好取食花器和嫩荚，常隐蔽于花蕾内部；温暖少雨天气下更利于种群增长。",
+    "cover_image_url": "/wiki-covers/45.jpg",
+    "source_refs": [
+      {
+        "authority": "EPPO Global Database",
+        "title": "Heliothis viriplaca"
+      },
+      {
+        "authority": "Plant protection references",
+        "title": "Flax budworm"
+      }
+    ],
+    "order_name_cn": "鳞翅目",
+    "family_name_cn": "夜蛾科",
+    "genus_name_cn": "棉铃虫属",
+    "body_length_en": "Larvae are about 25-35 mm long and adults have a wingspan of roughly 30-38 mm.",
+    "distribution_en": "Recorded in parts of Europe and Asia and associated with flax, legumes, and other broadleaf crops.",
+    "active_season_en": "Usually seen from late spring into summer, with the most visible injury on buds, flowers, and young pods.",
+    "protection_level_en": "Not evaluated",
+    "description_en": "The flax budworm damages buds, flowers, and young pods, reducing fruit set and crop quality when infestations are heavy.",
+    "morphology_en": "Larval coloration is variable and may be green, brown, or mottled. Adults are yellowish brown to olive brown on the forewings.",
+    "habits_en": "Larvae prefer reproductive tissues and often remain concealed within buds or flowers. Warm, relatively dry weather can favor development."
+  },
+  {
+    "class_id": 48,
+    "model_label": "Locustoidea",
+    "taxonomic_rank": "superfamily-group",
+    "species_name_cn": "蝗总科",
+    "species_name_en": "Locustoidea",
+    "order_name": "Orthoptera",
+    "family_name": "Acrididae 等",
+    "genus_name": "",
+    "body_length": "成虫体长差异较大，常见种约 20-60 mm",
+    "distribution": "广布于草地、农田和半干旱生态系统，温暖开阔环境常见。",
+    "active_season": "多在春夏至初秋活动，干热年份更易形成高密度群体。",
+    "protection_level": "未评估",
+    "harm_level": 2,
+    "description": "蝗总科是直翅目中与蝗虫、蚱蜢等相关的重要类群，成员多具强咀嚼式口器，可大量啃食禾草与作物叶片。",
+    "morphology": "后足发达善跳跃，前翅革质、后翅膜质，触角多较短。",
+    "habits": "多数种类取食叶片和嫩茎，在干旱少雨、草料丰富的条件下种群增长较快，局部可出现聚集迁移。",
+    "cover_image_url": "/wiki-covers/48.jpg",
+    "source_refs": [
+      {
+        "authority": "Atlas of Living Australia",
+        "title": "Locustoidea taxon record"
+      },
+      {
+        "authority": "FAO locust references",
+        "title": "Locust biology overview"
+      }
+    ],
+    "order_name_cn": "直翅目",
+    "family_name_cn": "蝗科等",
+    "genus_name_cn": "",
+    "body_length_en": "Adult body size varies widely by species, commonly around 20-60 mm.",
+    "distribution_en": "Common in grasslands, croplands, and semi-arid ecosystems, especially in open and warm habitats.",
+    "active_season_en": "Most active from spring through early autumn, with higher densities more likely in dry and hot years.",
+    "protection_level_en": "Not evaluated",
+    "description_en": "Locustoidea is a superfamily-level locust and grasshopper group within Orthoptera. Members are chewing herbivores and some species can consume large amounts of grasses and crop foliage.",
+    "morphology_en": "Hind legs are well developed for jumping. Forewings are leathery and hindwings membranous. Antennae are typically shorter than the body.",
+    "habits_en": "Most members feed on leaves and tender stems. In dry conditions with abundant forage, some populations can build rapidly and show mass movement or aggregation."
+  },
+  {
+    "class_id": 50,
+    "model_label": "legume blister beetle",
+    "taxonomic_rank": "group",
+    "species_name_cn": "豆芫菁",
+    "species_name_en": "Mylabris spp.",
+    "order_name": "Coleoptera",
+    "family_name": "Meloidae",
+    "genus_name": "Mylabris",
+    "body_length": "成虫常见 10-20 mm",
+    "distribution": "广见于豆科作物和花生、蔬菜等田块，温暖季节更常见。",
+    "active_season": "夏季到初秋为成虫取食高峰。",
+    "protection_level": "未评估",
+    "harm_level": 2,
+    "description": "豆芫菁通常指以豆科作物为主要取食对象的芫菁类群，成虫会咬食叶片、花和嫩荚，严重时影响结荚。",
+    "morphology": "成虫体软而狭长，鞘翅较柔软，多具黄黑相间斑纹，受扰时可分泌斑蝥素。",
+    "habits": "成虫白天活动并啃食地上部组织；幼虫发育方式复杂，部分种类早龄幼虫可寄生或捕食其他昆虫卵。",
+    "cover_image_url": "/wiki-covers/50.jpg",
+    "source_refs": [
+      {
+        "authority": "UC IPM",
+        "title": "Blister beetles"
+      },
+      {
+        "authority": "Agricultural references",
+        "title": "Legume blister beetles"
+      }
+    ],
+    "order_name_cn": "鞘翅目",
+    "family_name_cn": "芫菁科",
+    "genus_name_cn": "豆芫菁属",
+    "body_length_en": "Adults commonly measure around 10-20 mm.",
+    "distribution_en": "Common in warm seasons in legume fields and also found in groundnut, vegetable, and flowering crop systems.",
+    "active_season_en": "Adults are most noticeable from summer to early autumn.",
+    "protection_level_en": "Not evaluated",
+    "description_en": "Legume blister beetles are a crop-associated blister beetle group that feed on leaves, flowers, and young pods of legumes, sometimes reducing pod set.",
+    "morphology_en": "Adults are soft-bodied and elongate, often with black-and-yellow warning-like markings. They may exude cantharidin-containing body fluids when disturbed.",
+    "habits_en": "Adults feed on aboveground tissues in daylight. Larval development is complex, and early stages in some species are associated with other insects or insect eggs."
+  },
+  {
+    "class_id": 51,
+    "model_label": "blister beetle",
+    "taxonomic_rank": "family-group",
+    "species_name_cn": "芫菁",
+    "species_name_en": "Meloidae",
+    "order_name": "Coleoptera",
+    "family_name": "Meloidae",
+    "genus_name": "",
+    "body_length": "成虫多为 10-25 mm",
+    "distribution": "广泛分布于干热农田、草地和开阔生境。",
+    "active_season": "夏季最常见，开花作物上易聚集。",
+    "protection_level": "未评估",
+    "harm_level": 2,
+    "description": "芫菁科昆虫成虫多取食叶片、花朵和嫩组织，局部高密度时可对作物形成显著危害。",
+    "morphology": "体壁较软，头部明显，前胸狭于头和鞘翅；很多种类色彩鲜明。",
+    "habits": "成虫常在晴天活动并群集取食花器，体液含斑蝥素，对人畜有刺激性；幼虫发育阶段复杂。",
+    "cover_image_url": "/wiki-covers/51.jpg",
+    "source_refs": [
+      {
+        "authority": "UC IPM",
+        "title": "Blister beetles"
+      }
+    ],
+    "order_name_cn": "鞘翅目",
+    "family_name_cn": "芫菁科",
+    "genus_name_cn": "",
+    "body_length_en": "Adults are commonly 10-25 mm long.",
+    "distribution_en": "Widely distributed in open, dry farmland, rangeland, and flowering vegetation.",
+    "active_season_en": "Most common in summer, especially around flowering hosts.",
+    "protection_level_en": "Not evaluated",
+    "description_en": "Blister beetles are a soft-bodied beetle group whose adults often feed on leaves, flowers, and tender plant tissues, occasionally causing visible field damage.",
+    "morphology_en": "Adults usually have a narrow pronotum, soft elytra, and a distinctly exposed head. Many species show bright warning coloration.",
+    "habits_en": "Adults often aggregate on flowers during sunny periods. Body fluids contain cantharidin, and larval development includes multiple specialized stages."
+  },
+  {
+    "class_id": 54,
+    "model_label": "Thrips",
+    "taxonomic_rank": "genus-group",
+    "species_name_cn": "蓟马",
+    "species_name_en": "Thrips spp.",
+    "order_name": "Thysanoptera",
+    "family_name": "Thripidae",
+    "genus_name": "Thrips",
+    "body_length": "成虫一般 1-2 mm",
+    "distribution": "广泛分布于蔬菜、花卉、果树和大田作物系统中。",
+    "active_season": "高温干燥季节繁殖快，设施栽培可常年发生。",
+    "protection_level": "未评估",
+    "harm_level": 2,
+    "description": "蓟马类昆虫体型微小但危害重，可锉吸叶片、花器和果面，造成银白斑、畸形，并可传播多种植物病毒。",
+    "morphology": "体细长，翅狭而边缘具长缘毛；口器为锉吸式。",
+    "habits": "喜隐藏在嫩叶、花器和缝隙中取食，种群增长快，对高温低湿环境适应较强。",
+    "cover_image_url": "/wiki-covers/54.jpg",
+    "source_refs": [
+      {
+        "authority": "UC IPM",
+        "title": "Thrips"
+      }
+    ],
+    "order_name_cn": "缨翅目",
+    "family_name_cn": "蓟马科",
+    "genus_name_cn": "蓟马属",
+    "body_length_en": "Adults are usually 1-2 mm long.",
+    "distribution_en": "Widely distributed in vegetables, ornamentals, fruit crops, and field crops.",
+    "active_season_en": "Population growth is rapid in hot and dry weather, and infestations may persist year-round in protected cultivation.",
+    "protection_level_en": "Not evaluated",
+    "description_en": "Thrips are tiny but important rasping-sucking pests. They scar leaves, flowers, and fruit surfaces and can transmit several important plant viruses.",
+    "morphology_en": "Adults are slender with narrow wings fringed with long hairs. Mouthparts are adapted for rasping and sucking plant tissues.",
+    "habits_en": "They hide in young leaves, flowers, and crevices, reproduce quickly, and thrive under hot, dry conditions."
+  },
+  {
+    "class_id": 58,
+    "model_label": "Limacodidae",
+    "taxonomic_rank": "family-group",
+    "species_name_cn": "刺蛾科",
+    "species_name_en": "Limacodidae",
+    "order_name": "Lepidoptera",
+    "family_name": "Limacodidae",
+    "genus_name": "",
+    "body_length": "幼虫常为 10-30 mm，成虫多较小至中等",
+    "distribution": "广泛见于亚洲等温暖地区林木、果树和园林植物上。",
+    "active_season": "晚春至秋季可见幼虫取食，南方发生期更长。",
+    "protection_level": "未评估",
+    "harm_level": 2,
+    "description": "刺蛾科幼虫常被称为刺毛虫或蛞蝓毛虫，取食叶片并可造成明显缺刻，部分种类具毒刺可刺激皮肤。",
+    "morphology": "幼虫体扁平，行动像蛞蝓，常具分枝刺突或毒毛；成虫体短粗，翅较宽。",
+    "habits": "幼虫多在叶面活动取食，受扰时不易脱离寄主；一些种类在果树、茶树和林木上具间歇性暴发特点。",
+    "cover_image_url": "/wiki-covers/58.jpg",
+    "source_refs": [
+      {
+        "authority": "UF Featured Creatures",
+        "title": "Slug caterpillars (Limacodidae)"
+      },
+      {
+        "authority": "Biodiversity taxon references",
+        "title": "Limacodidae family records"
+      }
+    ],
+    "order_name_cn": "鳞翅目",
+    "family_name_cn": "刺蛾科",
+    "genus_name_cn": "",
+    "body_length_en": "Larvae are commonly 10-30 mm long, while adults are usually small to medium-sized moths.",
+    "distribution_en": "Common on trees, fruit crops, and ornamental plants in warm parts of Asia and other suitable regions.",
+    "active_season_en": "Larval feeding is most often seen from late spring through autumn, with longer seasons in southern areas.",
+    "protection_level_en": "Not evaluated",
+    "description_en": "Limacodidae, the slug caterpillar moth family, includes leaf-feeding larvae that may also bear stinging spines. Some species periodically injure fruit trees, tea, or landscape plants.",
+    "morphology_en": "Larvae are flattened and slug-like, often with branched spines or urticating structures. Adults are short-bodied moths with relatively broad wings.",
+    "habits_en": "Larvae feed openly on leaves and may be difficult to dislodge. Some species show intermittent outbreaks on perennial hosts."
+  },
+  {
+    "class_id": 67,
+    "model_label": "Lycorma delicatula",
+    "taxonomic_rank": "species",
+    "species_name_cn": "斑衣蜡蝉",
+    "species_name_en": "Lycorma delicatula",
+    "order_name": "Hemiptera",
+    "family_name": "Fulgoridae",
+    "genus_name": "Lycorma",
+    "body_length": "成虫体长约 20-27 mm",
+    "distribution": "原产东亚，现已扩散至北美等地，在葡萄、果树和园林树木上受到高度关注。",
+    "active_season": "若虫多见于春夏，成虫在夏末至秋季较多。",
+    "protection_level": "未评估",
+    "harm_level": 2,
+    "description": "斑衣蜡蝉为重要外来害虫，成若虫刺吸树液并分泌大量蜜露，可诱发煤污病并削弱寄主树势。",
+    "morphology": "成虫前翅灰色具黑斑，后翅鲜红、黑白对比明显；若虫早龄黑底白斑，末龄转为红色。",
+    "habits": "喜在多种木本寄主上取食，产卵于树皮和光滑表面；成虫跳跃和短距离飞翔能力较强。",
+    "cover_image_url": "/wiki-covers/67.jpg",
+    "source_refs": [
+      {
+        "authority": "Penn State Extension",
+        "title": "Spotted lanternfly"
+      },
+      {
+        "authority": "EPPO Global Database",
+        "title": "Lycorma delicatula"
+      }
+    ],
+    "order_name_cn": "半翅目",
+    "family_name_cn": "蜡蝉科",
+    "genus_name_cn": "斑衣蜡蝉属",
+    "body_length_en": "Adults are about 20-27 mm long.",
+    "distribution_en": "Native to East Asia but now established in North America and other regions, where it is closely watched on grapes, fruit trees, and ornamental trees.",
+    "active_season_en": "Nymphs are mostly present in spring and summer, while adults are abundant from late summer into autumn.",
+    "protection_level_en": "Not evaluated",
+    "description_en": "The spotted lanternfly is an important invasive sap-feeding pest. Nymphs and adults remove plant sap and excrete large amounts of honeydew, which promotes sooty mold and weakens hosts.",
+    "morphology_en": "Adults have gray forewings with black spots and striking red hindwings with black and white patches. Early instar nymphs are black with white spots, while late instars become red.",
+    "habits_en": "They feed on many woody hosts and lay eggs on bark and smooth surfaces. Adults jump readily and make short flights."
+  },
+  {
+    "class_id": 68,
+    "model_label": "Xylotrechus",
+    "taxonomic_rank": "genus-group",
+    "species_name_cn": "天牛属",
+    "species_name_en": "Xylotrechus spp.",
+    "order_name": "Coleoptera",
+    "family_name": "Cerambycidae",
+    "genus_name": "Xylotrechus",
+    "body_length": "成虫通常 8-25 mm，因种而异",
+    "distribution": "分布广泛，多见于林木、果树和木本植物资源丰富地区。",
+    "active_season": "多在春末至夏季羽化活动，幼虫全年可在木质部内发育。",
+    "protection_level": "未评估",
+    "harm_level": 2,
+    "description": "Xylotrechus 为天牛科中一类典型蛀干害虫属，幼虫钻蛀枝干和木质部，可削弱树势并降低木材或果树价值。",
+    "morphology": "成虫体狭长，多具黄黑相间横斑或带纹；幼虫乳白无足，头部褐色，典型木蠹型。",
+    "habits": "成虫在树干裂缝或受伤部位产卵，幼虫蛀道可长期存在；受害植株常伴随虫粪、排孔和枝梢衰弱。",
+    "cover_image_url": "/wiki-covers/68.jpg",
+    "source_refs": [
+      {
+        "authority": "US Customs and Border Protection",
+        "title": "Xylotrechus interceptions and wood-borer alerts"
+      },
+      {
+        "authority": "Cerambycidae / biodiversity references",
+        "title": "Xylotrechus genus records"
+      }
+    ],
+    "order_name_cn": "鞘翅目",
+    "family_name_cn": "天牛科",
+    "genus_name_cn": "天牛属",
+    "body_length_en": "Adults usually range from 8-25 mm depending on the species.",
+    "distribution_en": "Widely distributed where woody hosts are abundant, including forests, orchards, and urban trees.",
+    "active_season_en": "Adults usually emerge from late spring into summer, while larvae may develop in wood throughout the year.",
+    "protection_level_en": "Not evaluated",
+    "description_en": "Xylotrechus is a wood-boring longhorn beetle genus. Larvae tunnel in branches, trunks, and woody tissues, weakening trees and reducing timber or orchard value.",
+    "morphology_en": "Adults are elongate and often marked with yellow-and-black transverse bands. Larvae are creamy white, legless, and adapted for boring in wood.",
+    "habits_en": "Adults lay eggs in bark crevices and weakened tissues. Larval galleries are often accompanied by frass, exit holes, and progressive branch decline."
+  },
+  {
+    "class_id": 69,
+    "model_label": "Cicadella viridis",
+    "taxonomic_rank": "species",
+    "species_name_cn": "绿叶蝉",
+    "species_name_en": "Cicadella viridis",
+    "order_name": "Hemiptera",
+    "family_name": "Cicadellidae",
+    "genus_name": "Cicadella",
+    "body_length": "成虫体长约 7.5-9 mm",
+    "distribution": "广布于欧洲和亚洲温带地区，常见于湿润草地、田边和禾本科植被上。",
+    "active_season": "晚春至秋季较常见。",
+    "protection_level": "未评估",
+    "harm_level": 2,
+    "description": "绿叶蝉为叶蝉科常见种，主要刺吸草本植物汁液，在农田周边和禾本科植被中易见。",
+    "morphology": "成虫鲜绿色，体形楔状，头胸较宽，后足善跳跃。",
+    "habits": "多在草本寄主上活动和产卵，受惊时迅速跳离；高草覆盖和湿润环境有利于种群维持。",
+    "cover_image_url": "/wiki-covers/69.jpg",
+    "source_refs": [
+      {
+        "authority": "Biodiversity / taxon references",
+        "title": "Cicadella viridis"
+      },
+      {
+        "authority": "Natural history references",
+        "title": "Green leafhopper notes"
+      }
+    ],
+    "order_name_cn": "半翅目",
+    "family_name_cn": "叶蝉科",
+    "genus_name_cn": "绿叶蝉属",
+    "body_length_en": "Adults are about 7.5-9 mm long.",
+    "distribution_en": "Widely distributed in temperate parts of Europe and Asia, especially in moist grasslands and grassy field margins.",
+    "active_season_en": "Most common from late spring to autumn.",
+    "protection_level_en": "Not evaluated",
+    "description_en": "Cicadella viridis is a common green leafhopper that feeds on grasses and herbaceous plants. It is often encountered around agricultural fields and grassy vegetation.",
+    "morphology_en": "Adults are bright green and wedge-shaped, with broad heads and strong hind legs for jumping.",
+    "habits_en": "They stay on grasses and herbaceous hosts, jump quickly when disturbed, and are favored by dense, moist vegetation."
+  },
+  {
+    "class_id": 70,
+    "model_label": "Miridae",
+    "taxonomic_rank": "family-group",
+    "species_name_cn": "盲蝽科",
+    "species_name_en": "Miridae",
+    "order_name": "Hemiptera",
+    "family_name": "Miridae",
+    "genus_name": "",
+    "body_length": "成虫常见 2-10 mm",
+    "distribution": "广泛分布于农田、果园和自然植被环境中。",
+    "active_season": "春夏秋均可见，嫩梢和花器多时数量增加。",
+    "protection_level": "未评估",
+    "harm_level": 2,
+    "description": "盲蝽科是半翅目中种类极多的类群，许多种类刺吸芽、花、果和嫩叶，造成畸形、褐斑和落花落果。",
+    "morphology": "体形柔软，前翅末端具典型楔片，口器细长适于刺吸。",
+    "habits": "成虫和若虫多在寄主表面活动，部分种类昼夜均可取食；杂草丰富和花期长的田块常更有利于其存活。",
+    "cover_image_url": "/wiki-covers/70.jpg",
+    "source_refs": [
+      {
+        "authority": "UC IPM",
+        "title": "Plant bugs (Miridae)"
+      }
+    ],
+    "order_name_cn": "半翅目",
+    "family_name_cn": "盲蝽科",
+    "genus_name_cn": "",
+    "body_length_en": "Adults commonly range from 2-10 mm in length.",
+    "distribution_en": "Widely distributed in croplands, orchards, and natural vegetation.",
+    "active_season_en": "Present through spring, summer, and autumn, especially when tender shoots and flowers are abundant.",
+    "protection_level_en": "Not evaluated",
+    "description_en": "Miridae, the plant bug family, contains many sap-feeding species that injure buds, flowers, fruits, and young leaves, leading to distortion, spotting, or shedding.",
+    "morphology_en": "Bodies are relatively soft, and the forewings usually bear a distinct cuneus. Mouthparts are slender and adapted for piercing and sucking.",
+    "habits_en": "Adults and nymphs feed on plant surfaces, and some species remain active both day and night. Flowering crops and weedy habitats often support larger populations."
+  },
+  {
+    "class_id": 86,
+    "model_label": "Prodenia litura",
+    "taxonomic_rank": "species",
+    "species_name_cn": "斜纹夜蛾",
+    "species_name_en": "Spodoptera litura",
+    "order_name": "Lepidoptera",
+    "family_name": "Noctuidae",
+    "genus_name": "Spodoptera",
+    "body_length": "幼虫约 30-40 mm，成虫翅展约 30-38 mm",
+    "distribution": "广布于亚洲及热带、亚热带地区，是多种蔬菜和经济作物重要害虫。",
+    "active_season": "高温季节繁殖迅速，南方春末至秋季连续发生。",
+    "protection_level": "未评估",
+    "harm_level": 2,
+    "description": "斜纹夜蛾为高度杂食性夜蛾害虫，可危害豆类、蔬菜、棉花和花生等，大发生时造成明显失叶和嫩部损伤。",
+    "morphology": "幼虫体侧具明显纵带和半月形斑纹；成虫前翅暗褐带复杂波纹。",
+    "habits": "雌蛾成块产卵并覆毛，低龄幼虫群集取食，高龄幼虫分散且夜间取食强；高温和连作可促进暴发。",
+    "cover_image_url": "/wiki-covers/86.jpg",
+    "source_refs": [
+      {
+        "authority": "EPPO Global Database",
+        "title": "Spodoptera litura"
+      },
+      {
+        "authority": "Plant protection references",
+        "title": "Spodoptera litura (syn. Prodenia litura)"
+      }
+    ],
+    "order_name_cn": "鳞翅目",
+    "family_name_cn": "夜蛾科",
+    "genus_name_cn": "斜纹夜蛾属",
+    "body_length_en": "Larvae are about 30-40 mm long and adults have a wingspan of roughly 30-38 mm.",
+    "distribution_en": "Widely distributed in tropical and subtropical Asia and important in vegetables and cash crops.",
+    "active_season_en": "Develops quickly in hot weather and can occur continuously from late spring through autumn in southern areas.",
+    "protection_level_en": "Not evaluated",
+    "description_en": "Spodoptera litura is a highly polyphagous noctuid pest that attacks vegetables, legumes, peanuts, cotton, and many other crops, often causing severe defoliation.",
+    "morphology_en": "Larvae usually show conspicuous longitudinal bands and crescent-like markings on the body. Adults have dark, patterned forewings.",
+    "habits_en": "Females lay egg masses covered with scales. Young larvae feed together, whereas older larvae disperse and feed strongly at night. Warm weather and continuous cropping favor outbreaks."
+  },
+  {
+    "class_id": 101,
+    "model_label": "Cicadellidae",
+    "taxonomic_rank": "family-group",
+    "species_name_cn": "叶蝉科",
+    "species_name_en": "Cicadellidae",
+    "order_name": "Hemiptera",
+    "family_name": "Cicadellidae",
+    "genus_name": "",
+    "body_length": "成虫常见 3-10 mm",
+    "distribution": "广泛分布于农田、草地、果园和林缘植被中。",
+    "active_season": "温暖季节发生普遍，春夏到初秋最常见。",
+    "protection_level": "未评估",
+    "harm_level": 2,
+    "description": "叶蝉科为典型跳跃性刺吸害虫类群，许多成员吸食叶片汁液，部分种类还能传播植原体和植物病毒。",
+    "morphology": "体形楔状，后足胫节多具刺列，善跳跃；颜色和斑纹变化丰富。",
+    "habits": "多栖息于叶背或草丛，受惊即跳离；在杂草寄主和作物间迁移频繁，是田间病虫复合传播的重要群体。",
+    "cover_image_url": "/wiki-covers/101.jpg",
+    "source_refs": [
+      {
+        "authority": "UC IPM",
+        "title": "Leafhoppers"
+      },
+      {
+        "authority": "Biodiversity references",
+        "title": "Cicadellidae family records"
+      }
+    ],
+    "order_name_cn": "半翅目",
+    "family_name_cn": "叶蝉科",
+    "genus_name_cn": "",
+    "body_length_en": "Adults commonly range from 3-10 mm.",
+    "distribution_en": "Widely distributed in croplands, grasslands, orchards, and vegetation around field margins.",
+    "active_season_en": "Common through warm seasons, especially from spring to early autumn.",
+    "protection_level_en": "Not evaluated",
+    "description_en": "Cicadellidae, the leafhopper family, includes many jumping sap-feeding pests. Some members also vector phytoplasmas and plant viruses.",
+    "morphology_en": "Leafhoppers are wedge-shaped, with rows of spines on the hind tibiae and strong jumping ability. Body color and pattern vary widely among species.",
+    "habits_en": "They often occupy leaf undersides or grassy hosts and jump away when disturbed. Movement between weeds and crops makes them important in field disease and pest complexes."
+  }
+]
